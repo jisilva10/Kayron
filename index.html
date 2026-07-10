@@ -1127,6 +1127,7 @@ function showTab(i, btn) {
   const canvas = document.getElementById('gridCanvas');
   const ctx    = canvas.getContext('2d');
   let W, H, dots = [];
+  let cols, rows;
   const SPACING   = 38; // Increased spacing for wider movement
   const CONNECT_R = 90; // Increased connection radius so they swap more
   const MAX_LINKS = 4;  // Allow more connections
@@ -1139,14 +1140,15 @@ function showTab(i, btn) {
 
   function buildDots() {
     dots = [];
-    const cols = Math.ceil(W / SPACING) + 2;
-    const rows = Math.ceil(H / SPACING) + 2;
+    cols = Math.ceil(W / SPACING) + 2;
+    rows = Math.ceil(H / SPACING) + 2;
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
         dots.push({
           ox: c * SPACING - SPACING * 0.5,
           oy: r * SPACING - SPACING * 0.5,
           amp: 12 + Math.random() * 20, // Much higher amplitude for more movement
+          goldVal: 0 // Track gold intensity individually
         });
       }
     }
@@ -1170,6 +1172,9 @@ function showTab(i, btn) {
   const heroSection = document.getElementById('inicio');
   if (heroSection) observer.observe(heroSection);
 
+  // We maintain 4 active "pulses" of energy that wander the grid
+  let pulses = Array.from({length: 4}, () => ({ idx: -1, pause: 0 }));
+
   function draw() {
     requestAnimationFrame(draw);
     if (!isVisible) return; // Skip calculation and rendering if not in viewport
@@ -1177,21 +1182,59 @@ function showTab(i, btn) {
     t += 0.015; // Increased speed
     ctx.clearRect(0, 0, W, H);
     
+    // Manage 4 wandering pulses
+    pulses.forEach(p => {
+      if (p.pause > 0) {
+        p.pause--;
+        return;
+      }
+      
+      // Spawn new pulse or randomly teleport (0.5% chance) to keep it spread
+      if (p.idx === -1 || Math.random() < 0.005) { 
+        p.idx = Math.floor(Math.random() * dots.length);
+        p.pause = 30 + Math.random() * 60;
+      } else {
+        // Jump to a neighbor
+        const c = p.idx % cols;
+        const r = Math.floor(p.idx / cols);
+        let neighbors = [];
+        
+        // Orthogonal
+        if (c > 0) neighbors.push(p.idx - 1);
+        if (c < cols - 1) neighbors.push(p.idx + 1);
+        if (r > 0) neighbors.push(p.idx - cols);
+        if (r < rows - 1) neighbors.push(p.idx + cols);
+        
+        // Diagonal (optional, makes it more organic)
+        if (c > 0 && r > 0) neighbors.push(p.idx - 1 - cols);
+        if (c < cols - 1 && r < rows - 1) neighbors.push(p.idx + 1 + cols);
+        if (c > 0 && r < rows - 1) neighbors.push(p.idx - 1 + cols);
+        if (c < cols - 1 && r > 0) neighbors.push(p.idx + 1 - cols);
+        
+        if (neighbors.length > 0) {
+           p.idx = neighbors[Math.floor(Math.random() * neighbors.length)];
+           p.pause = 15 + Math.random() * 30; // wait at new dot
+        }
+      }
+    });
+
     // Calculate new positions and dynamic gold intensity
-    const pos = dots.map(d => {
+    const pos = dots.map((d, i) => {
       const nx = noise(d.ox, d.oy, t);
       const ny = noise(d.oy, d.ox, t + 100);
       
-      // Travelling gold pulse logic (simulates energy passing through)
-      const phase = (d.ox * 0.015) + (d.oy * 0.015) - (t * 3);
-      const pulse = Math.sin(phase) + Math.sin(d.ox * 0.03 - t * 2) * 0.5;
-      const goldIntensity = Math.max(0, Math.min(1, (pulse - 0.7) * 2)); 
+      const isTarget = pulses.some(p => p.idx === i);
+      if (isTarget) {
+         d.goldVal = Math.min(1, d.goldVal + 0.15); // Fast fade in
+      } else {
+         d.goldVal = Math.max(0, d.goldVal - 0.015); // Slow fade out (leaves a trail)
+      }
 
       return { 
         x: d.ox + nx * d.amp, 
         y: d.oy + ny * d.amp,
         dist: Math.sqrt(nx*nx + ny*ny), 
-        gold: goldIntensity
+        gold: d.goldVal
       };
     });
 
