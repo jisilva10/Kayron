@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Kayron Consulting & Engineering — Automatización e Inteligencia Artificial para empresas en Ecuador.">
+<title>Kayron Consulting & Engineering</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Crimson+Pro:ital,wght@0,300;1,300&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+
+/* ════════════════════════════════════════
+   RESET & BASE
+════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:  #F4F1EB;
+  --white:  #FAFAF8;
+  --dark:   #18180F;
+  --mid:    #5A5A52;
+  --light:  #C8C4BC;
+  --gold:   #B89A0A;
+  --border: #E2DDD5;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+/* ════════════════════════════════════════
+   NAV
+════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 28px 56px;
+  background: rgba(244,241,235,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+nav.scrolled { border-bottom-color: var(--border); }
+
+/* logo nav — KAYR chip ON */
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Cormorant', serif;
+  font-weight: 600;
+  font-size: 28px;
+  color: var(--dark);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  gap: 5px;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding-top: 6px;
+}
+.nav-links a {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--dark);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a.cta {
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 2px;
+}
+
+/* ════════════════════════════════════════
+   HERO
+════════════════════════════════════════ */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  padding-top: 96px;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 64px 80px 56px;
+}
+
+/* KAYRON wordmark grande */
+.hero-wordmark {
+  font-family: 'Cormorant', serif;
+  font-weight: 600;
+  font-size: clamp(64px, 8vw, 108px);
+  letter-spacing: 0.08em;
+  color: var(--dark);
+  line-height: 1;
+  margin-bottom: 12px;
+  opacity: 0;
+  animation: fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s forwards;
+}
+
+.hero-rule {
+  width: 0; height: 1.5px;
+  background: var(--gold);
+  margin-bottom: 12px;
+  opacity: 0;
+  animation:
+    rShow   0.1s ease 1.1s forwards,
+    rDraw   0.6s cubic-bezier(0.22,1,0.36,1) 1.1s forwards,
+    rSettle 0.3s ease 1.8s forwards;
+}
+
+.hero-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 2.0s forwards;
+}
+
+.hero-definition {
+  font-family: 'Cormorant', serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #888;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 2.2s forwards;
+}
+
+/* derecha */
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 80px 56px 80px 72px;
+  position: relative;
+}
+.hero-right::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 15%; bottom: 15%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--border) 40%, var(--border) 60%, transparent);
+}
+
+.hero-slogan {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--dark);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 0.5s forwards;
+}
+
+/* bloque copy hero */
+.hero-copy {
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.7s forwards;
+}
+.hero-copy h2 {
+  font-family: 'Cormorant', serif;
+  font-weight: 500;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--dark);
+  margin-bottom: 20px;
+}
+.hero-copy h2 em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+}
+.hero-copy p {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--mid);
+  max-width: 380px;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--dark);
+  padding: 16px 32px;
+  text-decoration: none;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 1.0s forwards;
+  transition: background 0.2s;
+}
+.hero-cta:hover { background: var(--gold); }
+.hero-cta .arrow { font-size: 15px; }
+
+/* grid canvas */
+.grid-wrap {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  margin-top: 48px;
+  opacity: 0;
+  animation: fadeIn 1.2s ease 1.6s forwards;
+}
+canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* ════════════════════════════════════════
+   SECCIÓN — LO QUE FRENA
+════════════════════════════════════════ */
+.frena {
+  border-top: 1px solid var(--border);
+  padding: 100px 56px;
+}
+
+.frena-header {
+  margin-bottom: 64px;
+}
+.frena-header h2 {
+  font-family: 'Cormorant', serif;
+  font-weight: 500;
+  font-size: clamp(36px, 4vw, 56px);
+  color: var(--dark);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.frena-header p {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--light);
+  text-transform: uppercase;
+}
+
+/* tabs */
+.tabs-nav {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+.tab-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--light);
+  background: none;
+  border: none;
+  padding: 16px 32px 14px;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 1.5px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+.tab-btn.active { color: var(--dark); }
+.tab-btn.active::after { transform: scaleX(1); }
+.tab-btn:hover { color: var(--dark); }
+
+.tab-panels { }
+
+.tab-panel {
+  display: none;
+  padding: 56px 0;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.tab-panel.active { display: grid; }
+
+.panel-quote {
+  font-family: 'Cormorant', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.3;
+  color: var(--dark);
+  letter-spacing: -0.01em;
+  border-left: 1.5px solid var(--gold);
+  padding-left: 28px;
+}
+
+.panel-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 8px;
+}
+.panel-label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 200;
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.panel-response {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--mid);
+}
+
+/* ════════════════════════════════════════
+   SECCIÓN — NOSOTROS
+════════════════════════════════════════ */
+.about {
+  border-top: 1px solid var(--border);
+  max-width: 100%;
+  padding: 0 56px;
+}
+
+.block-header {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0;
+  padding: 80px 0 100px;
+}
+
+.section-index {
+  font-family: 'Cormorant', serif;
+  font-weight: 300;
+  font-size: 96px;
+  line-height: 0.85;
+  color: var(--gold);
+  opacity: 0.3;
+  letter-spacing: -0.04em;
+  padding-top: 4px;
+  user-select: none;
+}
+
+.header-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: end;
+}
+
+.header-label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 200;
+  font-size: 9px;
+  letter-spacing: 0.38em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header-label::before {
+  content: '';
+  width: 20px; height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.header-title {
+  font-family: 'Cormorant', serif;
+  font-weight: 500;
+  font-size: clamp(32px, 3.5vw, 50px);
+  line-height: 1.08;
+  color: var(--dark);
+  letter-spacing: -0.02em;
+}
+.header-title em { font-style: italic; font-weight: 300; color: var(--gold); }
+
+.header-pull {
+  font-family: 'Crimson Pro', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--mid);
+  margin-bottom: 24px;
+  border-left: 1.5px solid var(--gold);
+  padding-left: 20px;
+}
+.header-body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--mid);
+}
+.header-body strong { font-weight: 400; color: var(--dark); }
+
+/* fundador */
+.block-founder {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  border-top: 1px solid var(--border);
+  min-height: 580px;
+}
+
+.founder-photo-col {
+  position: relative;
+  overflow: hidden;
+  background: #E8E4DE;
+}
+.founder-photo-col img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.photo-ph {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 14px;
+}
+.photo-ph-ring {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  border: 1px solid var(--light);
+  display: flex; align-items: center; justify-content: center;
+}
+.photo-ph-ring svg { opacity: 0.25; }
+.photo-ph span {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px; letter-spacing: 0.25em;
+  color: var(--light); text-transform: uppercase; font-weight: 300;
+}
+.photo-name-tag {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 28px 32px;
+  background: linear-gradient(to top, rgba(24,24,15,0.72), transparent);
+}
+.photo-name-tag h3 {
+  font-family: 'Cormorant', serif;
+  font-weight: 500; font-size: 26px;
+  color: #F4F1EB; line-height: 1; margin-bottom: 4px;
+}
+.photo-name-tag p {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 200; font-size: 9px;
+  letter-spacing: 0.28em; color: #D4B84A; text-transform: uppercase;
+}
+
+.founder-text-col {
+  padding: 64px 72px;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  background: var(--white);
+}
+.ft-label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 200; font-size: 9px;
+  letter-spacing: 0.38em; color: var(--light);
+  text-transform: uppercase; margin-bottom: 28px;
+}
+.ft-intro {
+  font-family: 'Cormorant', serif;
+  font-weight: 400;
+  font-size: clamp(26px, 2.8vw, 38px);
+  line-height: 1.2; color: var(--dark);
+  letter-spacing: -0.01em; margin-bottom: 32px;
+}
+.ft-intro em { font-style: italic; font-weight: 300; color: var(--gold); }
+.ft-body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300; font-size: 14px;
+  line-height: 1.85; color: var(--mid);
+  margin-bottom: 36px; max-width: 440px;
+}
+.ft-tags {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 48px;
+}
+.ft-tag {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300; font-size: 9.5px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--mid); border: 1px solid var(--border);
+  padding: 6px 14px; background: var(--cream);
+}
+.ft-tag.gold { color: var(--gold); border-color: var(--gold); background: transparent; }
+.ft-quote { border-top: 1px solid var(--border); padding-top: 28px; }
+.ft-quote blockquote {
+  font-family: 'Crimson Pro', serif;
+  font-style: italic; font-weight: 300;
+  font-size: 18px; line-height: 1.6;
+  color: var(--dark); margin-bottom: 12px;
+}
+.ft-quote cite {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 200; font-size: 9px;
+  letter-spacing: 0.25em; color: var(--light);
+  text-transform: uppercase; font-style: normal;
+}
+
+/* manifiesto */
+.block-manifesto {
+  border-top: 1px solid var(--border);
+  padding: 100px 0;
+  display: grid;
+  grid-template-columns: 160px 1fr 160px;
+  align-items: center;
+}
+.manifesto-deco {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 8px; opacity: 0.18;
+}
+.manifesto-deco .line { width: 1px; height: 56px; background: var(--gold); }
+.manifesto-deco .dot  { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+.manifesto-center { text-align: center; padding: 0 40px; }
+.manifesto-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 200; font-size: 9px;
+  letter-spacing: 0.38em; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 28px;
+}
+.manifesto-text {
+  font-family: 'Cormorant', serif;
+  font-weight: 300;
+  font-size: clamp(26px, 3.2vw, 44px);
+  line-height: 1.28; color: var(--dark);
+  letter-spacing: -0.01em; margin-bottom: 28px;
+}
+.manifesto-text strong { font-weight: 600; }
+.manifesto-text em { font-style: italic; color: var(--gold); }
+.manifesto-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300; font-size: 13px;
+  line-height: 1.85; color: var(--mid);
+  max-width: 500px; margin: 0 auto;
+}
+
+/* valores */
+.block-values { border-top: 1px solid var(--border); padding: 80px 0 100px; }
+.values-header {
+  display: flex; align-items: center;
+  gap: 16px; margin-bottom: 56px;
+}
+.values-header span {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 200; font-size: 9px;
+  letter-spacing: 0.38em; color: var(--light); text-transform: uppercase;
+}
+.values-header::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.values-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+}
+.value-card {
+  background: var(--cream);
+  padding: 48px 40px;
+  display: flex; flex-direction: column;
+}
+.value-n {
+  font-family: 'Cormorant', serif;
+  font-weight: 300; font-size: 60px;
+  line-height: 1; color: var(--gold);
+  opacity: 0.2; letter-spacing: -0.04em; margin-bottom: 16px;
+}
+.value-title {
+  font-family: 'Cormorant', serif;
+  font-weight: 600; font-size: 22px;
+  color: var(--dark); margin-bottom: 12px; line-height: 1.1;
+}
+.value-rule { width: 24px; height: 1px; background: var(--gold); margin-bottom: 14px; }
+.value-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300; font-size: 13px;
+  line-height: 1.85; color: var(--mid);
+}
+
+/* ════════════════════════════════════════
+   SECCIÓN — CÓMO TRABAJAMOS
+════════════════════════════════════════ */
+.process {
+  border-top: 1px solid var(--border);
+  padding: 100px 56px 120px;
+}
+.process-header { margin-bottom: 80px; }
+.process-header h2 {
+  font-family: 'Cormorant', serif;
+  font-weight: 500;
+  font-size: clamp(40px, 5vw, 64px);
+  color: var(--dark); letter-spacing: -0.02em;
+  line-height: 1; margin-bottom: 16px;
+}
+.process-header p {
+  font-family: 'Crimson Pro', serif;
+  font-style: italic; font-weight: 300;
+  font-size: 18px; color: var(--mid); line-height: 1.5;
+}
+
+.track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.track-line-bg {
+  position: absolute;
+  top: 10px;
+  left: calc(50% / 3);
+  right: calc(50% / 3);
+  height: 1px;
+  background: var(--border);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+.track-line-gold {
+  position: absolute;
+  top: 10px;
+  left: calc(50% / 3);
+  height: 1.5px;
+  width: 0%;
+  max-width: calc(100% - 50%/3*2);
+  background: var(--gold);
+  transform: translateY(-50%);
+  z-index: 1;
+  transition: width 1.6s cubic-bezier(0.4,0,0.2,1);
+}
+.step {
+  position: relative; z-index: 2;
+  padding: 0 40px 0 0;
+  display: flex; flex-direction: column;
+  align-items: flex-start;
+}
+.step:last-child { padding-right: 0; }
+.step-node {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--cream);
+  margin-bottom: 32px;
+  position: relative;
+  transition: border-color 0.4s ease, background 0.4s ease;
+  flex-shrink: 0;
+}
+.step-node::after {
+  content: '';
+  position: absolute; inset: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0; transform: scale(0);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+.step-node::before {
+  content: '';
+  position: absolute; inset: -8px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  opacity: 0; transform: scale(0.6);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.step-index {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 200; font-size: 10px;
+  letter-spacing: 0.22em; color: var(--light);
+  text-transform: uppercase; margin-bottom: 16px;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s ease, color 0.4s ease;
+}
+.step-title {
+  font-family: 'Cormorant', serif;
+  font-weight: 500; font-size: 28px;
+  color: var(--dark); letter-spacing: -0.01em;
+  margin-bottom: 12px;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s;
+}
+.step-body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300; font-size: 14px;
+  line-height: 1.8; color: var(--mid);
+  max-width: 300px;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;
+}
+.step.is-active .step-node { border-color: var(--gold); }
+.step.is-active .step-node::after { opacity: 1; transform: scale(1); }
+.step.is-active .step-node::before { opacity: 0.25; transform: scale(1); }
+.step.is-active .step-index { opacity: 1; transform: translateY(0); color: var(--gold); }
+.step.is-active .step-title { opacity: 1; transform: translateY(0); }
+.step.is-active .step-body  { opacity: 1; transform: translateY(0); }
+
+/* ════════════════════════════════════════
+   FOOTER / CTA FINAL
+════════════════════════════════════════ */
+.footer-cta {
+  border-top: 1px solid var(--border);
+  padding: 120px 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 32px;
+}
+.footer-cta h2 {
+  font-family: 'Cormorant', serif;
+  font-weight: 500;
+  font-size: clamp(36px, 5vw, 64px);
+  color: var(--dark);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.footer-cta h2 em { font-style: italic; font-weight: 300; color: var(--gold); }
+.footer-cta p {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300; font-size: 14px;
+  line-height: 1.8; color: var(--mid);
+  max-width: 480px;
+}
+.footer-cta .btn-primary {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300; font-size: 11px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--white); background: var(--dark);
+  padding: 18px 40px; text-decoration: none;
+  transition: background 0.2s;
+}
+.footer-cta .btn-primary:hover { background: var(--gold); }
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+footer p {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 200; font-size: 10px;
+  letter-spacing: 0.18em; color: var(--light);
+  text-transform: uppercase;
+}
+
+/* ════════════════════════════════════════
+   KEYFRAMES
+════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes rShow   { to { opacity: 1; } }
+@keyframes rDraw   { from { width: 0; } to { width: 48px; } }
+@keyframes rSettle { from { margin-bottom: 0; } to { margin-bottom: 12px; } }
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media (max-width: 900px) {
+  nav { padding: 20px 24px; }
+  .hero { grid-template-columns: 1fr; padding-top: 80px; }
+  .hero-right::before { display: none; }
+  .hero-left, .hero-right { padding: 48px 24px; }
+  .frena { padding: 72px 24px; }
+  .tab-btn { padding: 14px 16px; font-size: 10px; }
+  .tab-panel { grid-template-columns: 1fr; gap: 40px; }
+  .about { padding: 0 24px; }
+  .block-header { grid-template-columns: 1fr; }
+  .section-index { display: none; }
+  .header-content { grid-template-columns: 1fr; gap: 40px; }
+  .block-founder { grid-template-columns: 1fr; }
+  .founder-photo-col { min-height: 380px; }
+  .founder-text-col { padding: 48px 24px; }
+  .block-manifesto { grid-template-columns: 1fr; }
+  .manifesto-deco { display: none; }
+  .values-grid { grid-template-columns: 1fr; }
+  .process { padding: 72px 24px 80px; }
+  .track { grid-template-columns: 1fr; gap: 48px; }
+  .track-line-bg, .track-line-gold { display: none; }
+  .step { padding: 0; }
+  .footer-cta { padding: 80px 24px; }
+  footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════
+     NAV
+══════════════════════════ -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    KAYR
+    <svg width="16" height="12" viewBox="0 0 22 16" fill="none">
+      <rect x="5" y="2" width="12" height="12" rx="1.5" stroke="#B89A0A" stroke-width="1.2" fill="none"/>
+      <line x1="5" y1="5.5" x2="2" y2="5.5" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
+      <line x1="5" y1="10.5" x2="2" y2="10.5" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
+      <line x1="17" y1="5.5" x2="20" y2="5.5" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
+      <line x1="17" y1="10.5" x2="20" y2="10.5" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
+      <line x1="8" y1="2" x2="8" y2="0" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
+      <line x1="11" y1="2" x2="11" y2="0" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
+      <line x1="14" y1="2" x2="14" y2="0" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
+      <line x1="8" y1="14" x2="8" y2="16" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
+      <line x1="11" y1="14" x2="11" y2="16" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
+      <line x1="14" y1="14" x2="14" y2="16" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
+      <circle cx="11" cy="8" r="2" fill="#B89A0A"/>
+    </svg>
+    ON
+  </a>
+  <div class="nav-links">
+    <a href="#nosotros">Quiénes somos</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#contacto" class="cta">Contacto</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════
+     HERO
+══════════════════════════ -->
+<section class="hero" id="inicio">
+
+  <div class="hero-left">
+    <div class="hero-wordmark">KAYRON</div>
+    <div class="hero-rule"></div>
+    <div class="hero-sub">Consulting &amp; Engineering</div>
+    <p class="hero-definition">
+      kai·ron &nbsp;|&nbsp; del griego. (kairós) el momento exacto &nbsp;/&nbsp; (-on) fuerza que activa
+    </p>
+  </div>
+
+  <div class="hero-right">
+    <p class="hero-slogan">Activamos tu momento</p>
+    <div class="hero-copy">
+      <h2>
+        El momento de transformar<br>
+        tu empresa es <em>ahora.</em>
+      </h2>
+      <p>
+        Optimizamos tus procesos con inteligencia artificial y automatización. Resultados reales, sistemas que funcionan, equipos que los adoptan.
+      </p>
+    </div>
+    <a class="hero-cta" href="#contacto">
+      Agenda una llamada <span class="arrow">→</span>
+    </a>
+    <div class="grid-wrap">
+      <canvas id="gridCanvas"></canvas>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════
+     LO QUE FRENA
+══════════════════════════ -->
+<section class="frena" id="servicios">
+  <div class="frena-header">
+    <h2>Lo que frena a tu empresa.</h2>
+    <p>Lo identificamos. Lo resolvemos. Lo medimos.</p>
+  </div>
+
+  <div class="tabs-nav">
+    <button class="tab-btn active" onclick="showTab(0, this)">Procesos</button>
+    <button class="tab-btn" onclick="showTab(1, this)">Datos</button>
+    <button class="tab-btn" onclick="showTab(2, this)">Inteligencia Artificial</button>
+    <button class="tab-btn" onclick="showTab(3, this)">Competencia</button>
+  </div>
+
+  <div class="tab-panels">
+
+    <div class="tab-panel active">
+      <p class="panel-quote">"Tu equipo hace en 4 horas lo que podría hacerse en 20 minutos."</p>
+      <div class="panel-right">
+        <p class="panel-label">Nuestra respuesta</p>
+        <p class="panel-response">Mapeamos dónde se pierde el tiempo y construimos los flujos que lo resuelven. Tu equipo deja de operar en modo supervivencia.</p>
+      </div>
+    </div>
+
+    <div class="tab-panel">
+      <p class="panel-quote">"Tienes datos pero nadie los lee ni los entiende."</p>
+      <div class="panel-right">
+        <p class="panel-label">Nuestra respuesta</p>
+        <p class="panel-response">Convertimos esa información en dashboards claros y reportes automáticos. Las decisiones se toman con certeza, no con el estómago.</p>
+      </div>
+    </div>
+
+    <div class="tab-panel">
+      <p class="panel-quote">"Escuchaste hablar de IA pero no sabes por dónde empezar."</p>
+      <div class="panel-right">
+        <p class="panel-label">Nuestra respuesta</p>
+        <p class="panel-response">Identificamos dónde la IA genera impacto real en tu operación y la implementamos sin fricción. Sin curvas de aprendizaje eternas.</p>
+      </div>
+    </div>
+
+    <div class="tab-panel">
+      <p class="panel-quote">"Tu competencia ya está automatizando. Tú todavía no."</p>
+      <div class="panel-right">
+        <p class="panel-label">Nuestra respuesta</p>
+        <p class="panel-response">Diagnóstico en menos de una semana. Primeros sistemas funcionando en menos de un mes. Sin compromisos innecesarios.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════
+     NOSOTROS
+══════════════════════════ -->
+<section class="about" id="nosotros">
+
+  <div class="block-header">
+    <div class="section-index">02</div>
+    <div class="header-content">
+      <div>
+        <div class="header-label">Quiénes somos</div>
+        <h2 class="header-title">
+          Un nombre con<br>
+          <em>2.500 años</em><br>
+          de historia detrás.
+        </h2>
+      </div>
+      <div>
+        <p class="header-pull">
+          Kairós era la comprensión griega del tiempo que importa. No el que se mide en relojes, sino el instante preciso en que actuar marca la diferencia entre avanzar o quedarse.
+        </p>
+        <p class="header-body">
+          Le sumamos <strong>-on</strong>, el sufijo de las partículas que mueven el universo. El electrón. El fotón. No solo el momento. La fuerza que lo activa.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block-founder">
+    <div class="founder-photo-col">
+      <!-- Reemplaza con tu foto: <img src="foto.jpg" alt="José Ignacio Silva"> -->
+      <div class="photo-ph">
+        <div class="photo-ph-ring">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="10" r="5" stroke="#888" stroke-width="1"/>
+            <path d="M4 24c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#888" stroke-width="1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span>Tu foto aquí</span>
+      </div>
+      <div class="photo-name-tag">
+        <h3>José Ignacio Silva</h3>
+        <p>Fundador &amp; Consultor Principal</p>
+      </div>
+    </div>
+
+    <div class="founder-text-col">
+      <div>
+        <p class="ft-label">El fundador</p>
+        <h3 class="ft-intro">
+          Estrategia, talento humano<br>
+          e <em>inteligencia artificial</em><br>
+          en una sola conversación.
+        </h3>
+        <p class="ft-body">
+          Trabajo con empresas que saben que algo en su operación puede funcionar mejor, pero no saben exactamente qué ni cómo. Mi enfoque combina análisis organizacional con implementación real: no diagnósticos que quedan en un cajón, sino sistemas que tu equipo adopta y que generan resultados desde el primer mes.
+        </p>
+        <div class="ft-tags">
+          <span class="ft-tag gold">Inteligencia Artificial</span>
+          <span class="ft-tag">Automatización</span>
+          <span class="ft-tag">Estrategia Empresarial</span>
+          <span class="ft-tag">Gestión del Talento</span>
+          <span class="ft-tag gold">N8n · LLMs</span>
+          <span class="ft-tag">Consultoría de Procesos</span>
+        </div>
+      </div>
+      <div class="ft-quote">
+        <blockquote>"Tu momento de transformación ya existe dentro de tu empresa. Nosotros somos la fuerza que lo activa."</blockquote>
+        <cite>José Ignacio Silva, Fundador de Kayron</cite>
+      </div>
+    </div>
+  </div>
+
+  <div class="block-manifesto">
+    <div class="manifesto-deco"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+    <div class="manifesto-center">
+      <p class="manifesto-eyebrow">Lo que creemos</p>
+      <p class="manifesto-text">
+        Las empresas latinoamericanas merecen acceso<br>
+        a las mismas herramientas que usan<br>
+        <strong>las grandes corporaciones del mundo.</strong><br>
+        <em>Esa brecha es nuestra razón de existir.</em>
+      </p>
+      <p class="manifesto-sub">Sin tecnología por moda. Sin diagnósticos guardados en carpetas. Cosas que funcionan, que tu equipo adopta, y que se miden desde el día uno.</p>
+    </div>
+    <div class="manifesto-deco"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+  </div>
+
+  <div class="block-values">
+    <div class="values-header"><span>Cómo pensamos</span></div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-n">01</div>
+        <div class="value-title">Criterio antes que tecnología</div>
+        <div class="value-rule"></div>
+        <p class="value-desc">Cada herramienta tiene que justificarse con un resultado concreto. Nunca implementamos por moda o por tendencia.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-n">02</div>
+        <div class="value-title">Sistemas que viven y crecen</div>
+        <div class="value-rule"></div>
+        <p class="value-desc">Lo que construimos no termina en la entrega. Es un sistema que se actualiza, se mide y evoluciona con tu empresa.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-n">03</div>
+        <div class="value-title">Resultados desde el día uno</div>
+        <div class="value-rule"></div>
+        <p class="value-desc">Si no se puede medir, no cuenta. Cada implementación arranca con métricas claras y un punto de comparación real.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════
+     CÓMO TRABAJAMOS
+══════════════════════════ -->
+<section class="process" id="proceso">
+  <div class="process-header">
+    <h2>Cómo trabajamos</h2>
+    <p>Eliminamos la fricción. Un camino claro desde el primer contacto hasta el resultado final.</p>
+  </div>
+
+  <div class="track" id="track">
+    <div class="track-line-bg"></div>
+    <div class="track-line-gold" id="goldLine"></div>
+
+    <div class="step" id="step1">
+      <div class="step-node"></div>
+      <span class="step-index">/ 01</span>
+      <h3 class="step-title">Conversación</h3>
+      <p class="step-body">Hablamos 30 minutos, entendemos tu situación sin compromiso.</p>
+    </div>
+    <div class="step" id="step2">
+      <div class="step-node"></div>
+      <span class="step-index">/ 02</span>
+      <h3 class="step-title">Diagnóstico</h3>
+      <p class="step-body">Mapeamos tus procesos y te presentamos un plan concreto.</p>
+    </div>
+    <div class="step" id="step3">
+      <div class="step-node"></div>
+      <span class="step-index">/ 03</span>
+      <h3 class="step-title">Ejecución</h3>
+      <p class="step-body">Implementamos, medimos y ajustamos contigo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════
+     CTA FINAL
+══════════════════════════ -->
+<section class="footer-cta" id="contacto">
+  <h2>Tu momento<br>es <em>ahora.</em></h2>
+  <p>30 minutos. Sin compromiso. Con claridad sobre qué está frenando tu empresa y cómo resolverlo.</p>
+  <a class="btn-primary" href="mailto:hola@kayron.consulting">Agenda una llamada →</a>
+</section>
+
+<footer>
+  <p>© 2025 Kayron Consulting &amp; Engineering</p>
+  <p>Ecuador</p>
+</footer>
+
+<!-- ══════════════════════════
+     SCRIPTS
+══════════════════════════ -->
+<script>
+
+// ── NAV scroll border ──
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ── TABS ──
+function showTab(i, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel')[i].classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── GRID CANVAS ──
+(function() {
+  const canvas = document.getElementById('gridCanvas');
+  const ctx    = canvas.getContext('2d');
+  let W, H, dots = [];
+  const SPACING   = 32;
+  const CONNECT_R = 72;
+  const MAX_LINKS = 3;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+    buildDots();
+  }
+
+  function buildDots() {
+    dots = [];
+    const cols = Math.ceil(W / SPACING) + 2;
+    const rows = Math.ceil(H / SPACING) + 2;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        dots.push({
+          ox: c * SPACING - SPACING * 0.5,
+          oy: r * SPACING - SPACING * 0.5,
+          amp: 6 + Math.random() * 8,
+          isGold: Math.random() < 0.08,
+        });
+      }
+    }
+  }
+
+  function noise(x, y, t) {
+    return (
+      Math.sin(x * 0.013 + t * 0.6) *
+      Math.cos(y * 0.013 + t * 0.45) +
+      Math.sin(x * 0.022 + y * 0.016 + t * 0.35) * 0.5
+    ) * 0.5;
+  }
+
+  let t = 0;
+  function draw() {
+    t += 0.007;
+    ctx.clearRect(0, 0, W, H);
+    const pos = dots.map(d => {
+      const nx = noise(d.ox, d.oy, t);
+      const ny = noise(d.oy, d.ox, t + 100);
+      return { x: d.ox + nx * d.amp, y: d.oy + ny * d.amp,
+               dist: Math.sqrt(nx*nx + ny*ny), isGold: d.isGold };
+    });
+    for (let i = 0; i < pos.length; i++) {
+      const a = pos[i]; let links = 0;
+      for (let j = i+1; j < pos.length && links < MAX_LINKS; j++) {
+        const b = pos[j];
+        const dx = a.x-b.x, dy = a.y-b.y;
+        const d = Math.sqrt(dx*dx + dy*dy);
+        if (d < CONNECT_R) {
+          const s = 1 - d/CONNECT_R;
+          const gold = a.isGold || b.isGold;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = gold ? `rgba(184,154,10,${s*0.28})` : `rgba(26,26,24,${s*0.10})`;
+          ctx.lineWidth = gold ? 0.8 : 0.5; ctx.stroke(); links++;
+        }
+      }
+    }
+    pos.forEach(p => {
+      const alpha = 0.20 + p.dist * 0.5;
+      if (p.isGold) {
+        const g = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,9);
+        g.addColorStop(0, 'rgba(184,154,10,0.16)');
+        g.addColorStop(1, 'rgba(184,154,10,0)');
+        ctx.beginPath(); ctx.arc(p.x,p.y,9,0,Math.PI*2); ctx.fillStyle=g; ctx.fill();
+      }
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.isGold ? 2.2 : 1.3, 0, Math.PI*2);
+      ctx.fillStyle = p.isGold
+        ? `rgba(184,154,10,${Math.min(alpha*1.5,0.85)})`
+        : `rgba(26,26,24,${alpha})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', resize);
+  resize(); draw();
+})();
+
+// ── PROCESS LINE ──
+(function() {
+  const goldLine = document.getElementById('goldLine');
+  const steps = [
+    document.getElementById('step1'),
+    document.getElementById('step2'),
+    document.getElementById('step3'),
+  ];
+  const lineWidths = ['0%', '50%', '100%'];
+  let triggered = false;
+
+  function activateStep(i) {
+    steps[i].classList.add('is-active');
+    goldLine.style.width = lineWidths[i];
+  }
+
+  function runSequence() {
+    if (triggered) return;
+    triggered = true;
+    setTimeout(() => activateStep(0), 300);
+    setTimeout(() => activateStep(1), 1100);
+    setTimeout(() => activateStep(2), 1900);
+  }
+
+  new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) runSequence(); });
+  }, { threshold: 0.3 }).observe(document.getElementById('track'));
+})();
+
+</script>
+</body>
+</html>
