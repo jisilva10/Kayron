@@ -449,9 +449,9 @@ canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
   background: #E8E4DE;
 }
 .founder-photo-col img {
-  width: 100%; height: 100%;
+  width: 100%; height: 115%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center;
   display: block;
 }
 .photo-ph {
@@ -782,6 +782,44 @@ footer p {
 }
 
 /* ════════════════════════════════════════
+   SCROLL ANIMATIONS (NEW)
+════════════════════════════════════════ */
+.stagger-parent .stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.stagger-parent.in-view .stagger-item { opacity: 1; transform: translateY(0); }
+.stagger-parent.in-view .stagger-item:nth-child(1) { transition-delay: 0.1s; }
+.stagger-parent.in-view .stagger-item:nth-child(2) { transition-delay: 0.2s; }
+.stagger-parent.in-view .stagger-item:nth-child(3) { transition-delay: 0.3s; }
+.stagger-parent.in-view .stagger-item:nth-child(4) { transition-delay: 0.4s; }
+
+.reveal-text {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+.reveal-text > span {
+  display: block;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: transform 1.2s cubic-bezier(0.22,1,0.36,1), opacity 0.8s ease;
+}
+.reveal-text.in-view > span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22,1,0.36,1);
+}
+.fade-up-scroll.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ════════════════════════════════════════
    KEYFRAMES
 ════════════════════════════════════════ */
 @keyframes fadeUp {
@@ -914,16 +952,16 @@ footer p {
      LO QUE FRENA
 ══════════════════════════ -->
 <section class="frena" id="servicios">
-  <div class="frena-header">
-    <h2>Lo que frena a tu empresa.</h2>
+  <div class="frena-header fade-up-scroll">
+    <h2 class="reveal-text"><span>Lo que frena a tu empresa.</span></h2>
     <p>Lo identificamos. Lo resolvemos. Lo medimos.</p>
   </div>
 
-  <div class="tabs-nav">
-    <button class="tab-btn active" onclick="showTab(0, this)">Procesos</button>
-    <button class="tab-btn" onclick="showTab(1, this)">Datos</button>
-    <button class="tab-btn" onclick="showTab(2, this)">Inteligencia Artificial</button>
-    <button class="tab-btn" onclick="showTab(3, this)">Competencia</button>
+  <div class="tabs-nav stagger-parent">
+    <button class="tab-btn active stagger-item" onclick="showTab(0, this)">Procesos</button>
+    <button class="tab-btn stagger-item" onclick="showTab(1, this)">Datos</button>
+    <button class="tab-btn stagger-item" onclick="showTab(2, this)">Inteligencia Artificial</button>
+    <button class="tab-btn stagger-item" onclick="showTab(3, this)">Competencia</button>
   </div>
 
   <div class="tab-panels">
@@ -969,14 +1007,14 @@ footer p {
 <section class="about" id="nosotros">
 
   <div class="block-header">
-    <div class="section-index">02</div>
-    <div class="header-content">
+    <div class="section-index parallax" data-speed="0.15">02</div>
+    <div class="header-content fade-up-scroll">
       <div>
         <div class="header-label">Quiénes somos</div>
-        <h2 class="header-title">
-          Un nombre con<br>
+        <h2 class="header-title reveal-text">
+          <span>Un nombre con<br>
           <em>2.500 años</em><br>
-          de historia detrás.
+          de historia detrás.</span>
         </h2>
       </div>
       <div>
@@ -993,7 +1031,7 @@ footer p {
   <div class="block-founder">
     <div class="founder-photo-col">
       <!-- Reemplaza con tu foto: <img src="foto.jpg" alt="José Ignacio Silva"> -->
-      <div class="photo-ph">
+      <div class="photo-ph parallax" data-speed="0.08">
         <div class="photo-ph-ring">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
             <circle cx="14" cy="10" r="5" stroke="#888" stroke-width="1"/>
@@ -1008,13 +1046,13 @@ footer p {
       </div>
     </div>
 
-    <div class="founder-text-col">
+    <div class="founder-text-col fade-up-scroll">
       <div>
         <p class="ft-label">El fundador</p>
-        <h3 class="ft-intro">
-          Estrategia, talento humano<br>
+        <h3 class="ft-intro reveal-text">
+          <span>Estrategia, talento humano<br>
           e <em>inteligencia artificial</em><br>
-          en una sola conversación.
+          en una sola conversación.</span>
         </h3>
         <p class="ft-body">
           Trabajo con empresas que saben que algo en su operación puede funcionar mejor, pero no saben exactamente qué ni cómo. Mi enfoque combina análisis organizacional con implementación real: no diagnósticos que quedan en un cajón, sino sistemas que tu equipo adopta y que generan resultados desde el primer mes.
@@ -1036,14 +1074,14 @@ footer p {
   </div>
 
   <div class="block-manifesto">
-    <div class="manifesto-deco"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
-    <div class="manifesto-center">
+    <div class="manifesto-deco fade-up-scroll"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+    <div class="manifesto-center fade-up-scroll">
       <p class="manifesto-eyebrow">Lo que creemos</p>
-      <p class="manifesto-text">
-        Las empresas latinoamericanas merecen acceso<br>
+      <p class="manifesto-text reveal-text">
+        <span>Las empresas latinoamericanas merecen acceso<br>
         a las mismas herramientas que usan<br>
         <strong>las grandes corporaciones del mundo.</strong><br>
-        <em>Esa brecha es nuestra razón de existir.</em>
+        <em>Esa brecha es nuestra razón de existir.</em></span>
       </p>
       <p class="manifesto-sub">Sin tecnología por moda. Sin diagnósticos guardados en carpetas. Cosas que funcionan, que tu equipo adopta, y que se miden desde el día uno.</p>
     </div>
@@ -1052,20 +1090,20 @@ footer p {
 
   <div class="block-values">
     <div class="values-header"><span>Cómo pensamos</span></div>
-    <div class="values-grid">
-      <div class="value-card">
+    <div class="values-grid stagger-parent">
+      <div class="value-card stagger-item">
         <div class="value-n">01</div>
         <div class="value-title">Criterio antes que tecnología</div>
         <div class="value-rule"></div>
         <p class="value-desc">Cada herramienta tiene que justificarse con un resultado concreto. Nunca implementamos por moda o por tendencia.</p>
       </div>
-      <div class="value-card">
+      <div class="value-card stagger-item">
         <div class="value-n">02</div>
         <div class="value-title">Sistemas que viven y crecen</div>
         <div class="value-rule"></div>
         <p class="value-desc">Lo que construimos no termina en la entrega. Es un sistema que se actualiza, se mide y evoluciona con tu empresa.</p>
       </div>
-      <div class="value-card">
+      <div class="value-card stagger-item">
         <div class="value-n">03</div>
         <div class="value-title">Resultados desde el día uno</div>
         <div class="value-rule"></div>
@@ -1113,8 +1151,8 @@ footer p {
 <!-- ══════════════════════════
      CTA FINAL
 ══════════════════════════ -->
-<section class="footer-cta" id="contacto">
-  <h2>Tu momento<br>es <em>ahora.</em></h2>
+<section class="footer-cta fade-up-scroll" id="contacto">
+  <h2 class="reveal-text"><span>Tu momento<br>es <em>ahora.</em></span></h2>
   <p>30 minutos. Sin compromiso. Con claridad sobre qué está frenando tu empresa y cómo resolverlo.</p>
   <a class="btn-primary" href="mailto:hola@kayron.consulting">Agenda una llamada →</a>
 </section>
@@ -1318,6 +1356,37 @@ function showTab(i, btn) {
   window.addEventListener('resize', resize);
   resize(); 
   draw();
+})();
+
+// ── SCROLL ANIMATIONS (Fade, Stagger, Reveal) ──
+(function() {
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+
+  document.querySelectorAll('.reveal-text, .fade-up-scroll, .stagger-parent').forEach(el => observer.observe(el));
+})();
+
+// ── PARALLAX ──
+(function() {
+  const parallaxElements = document.querySelectorAll('.parallax');
+  if (parallaxElements.length === 0) return;
+  
+  window.addEventListener('scroll', () => {
+    requestAnimationFrame(() => {
+      parallaxElements.forEach(el => {
+        const speed = el.getAttribute('data-speed') || 0.15;
+        const rect = el.getBoundingClientRect();
+        const yPos = (rect.top + rect.height / 2) - (window.innerHeight / 2);
+        el.style.transform = \`translateY(\${yPos * speed}px)\`;
+      });
+    });
+  }, { passive: true });
 })();
 
 // ── PROCESS LINE ──
