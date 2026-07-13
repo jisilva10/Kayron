@@ -658,12 +658,12 @@ canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
   top: 10px;
   left: calc(50% / 3);
   height: 1.5px;
-  width: 0%;
+  width: var(--progress, 0%);
   max-width: calc(100% - 50%/3*2);
   background: var(--gold);
   transform: translateY(-50%);
   z-index: 1;
-  transition: width 1.6s cubic-bezier(0.4,0,0.2,1);
+  transition: width 1.6s cubic-bezier(0.4,0,0.2,1), height 1.6s cubic-bezier(0.4,0,0.2,1);
 }
 .step {
   position: relative; z-index: 2;
@@ -835,32 +835,81 @@ footer p {
 @keyframes rSettle { from { margin-bottom: 0; } to { margin-bottom: 12px; } }
 
 /* ════════════════════════════════════════
-   RESPONSIVE
+   MOBILE MENU & RESPONSIVE
 ════════════════════════════════════════ */
+.menu-toggle {
+  display: none; flex-direction: column; gap: 6px;
+  cursor: pointer; z-index: 200; padding: 8px; margin-right: -8px;
+}
+.menu-toggle span {
+  width: 24px; height: 1.5px; background: var(--dark);
+  transition: 0.4s cubic-bezier(0.22,1,0.36,1);
+  transform-origin: center;
+}
+.menu-toggle.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { transform: translateY(-7.5px) rotate(-45deg); }
+
 @media (max-width: 900px) {
-  nav { padding: 20px 24px; }
-  .hero { grid-template-columns: 1fr; padding-top: 80px; }
+  nav { padding: 16px 24px; align-items: center; }
+  .menu-toggle { display: flex; }
+  .nav-links {
+    position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+    background: rgba(244,241,235,0.98); backdrop-filter: blur(12px);
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 48px; transition: right 0.5s cubic-bezier(0.22,1,0.36,1); z-index: 100;
+  }
+  .nav-links.active { right: 0; }
+  .nav-links a { font-size: 16px; letter-spacing: 0.25em; }
+
+  .hero { grid-template-columns: 1fr; padding-top: 80px; min-height: auto; }
   .hero-right::before { display: none; }
   .hero-left, .hero-right { padding: 48px 24px; }
+  .hero-wordmark { font-size: 64px; margin-bottom: 24px; }
+  .hero-definition { font-size: 14px; }
+  
   .frena { padding: 72px 24px; }
-  .tab-btn { padding: 14px 16px; font-size: 10px; }
+  .tabs-nav { 
+    display: flex; overflow-x: auto; white-space: nowrap; 
+    -webkit-overflow-scrolling: touch; scrollbar-width: none; 
+    padding-bottom: 2px;
+  }
+  .tabs-nav::-webkit-scrollbar { display: none; }
+  .tab-btn { padding: 16px 24px; flex-shrink: 0; font-size: 11px; }
   .tab-panel { grid-template-columns: 1fr; gap: 40px; }
+  
   .about { padding: 0 24px; }
-  .block-header { grid-template-columns: 1fr; }
+  .block-header { grid-template-columns: 1fr; padding: 64px 0 32px; }
   .section-index { display: none; }
   .header-content { grid-template-columns: 1fr; gap: 40px; }
   .block-founder { grid-template-columns: 1fr; }
-  .founder-photo-col { min-height: 380px; }
-  .founder-text-col { padding: 48px 24px; }
-  .block-manifesto { grid-template-columns: 1fr; }
+  .founder-photo-col { min-height: 480px; }
+  .founder-text-col { padding: 56px 24px; }
+  
+  .block-manifesto { grid-template-columns: 1fr; padding: 80px 0; }
   .manifesto-deco { display: none; }
+  .manifesto-center { padding: 0; }
+  
   .values-grid { grid-template-columns: 1fr; }
-  .process { padding: 72px 24px 80px; }
-  .track { grid-template-columns: 1fr; gap: 48px; }
-  .track-line-bg, .track-line-gold { display: none; }
-  .step { padding: 0; }
+  .value-card { padding: 40px 24px; }
+  
+  .process { padding: 72px 24px 96px; }
+  .track { 
+    display: flex; flex-direction: column; gap: 48px; 
+    padding-left: 0; 
+  }
+  .track-line-bg { 
+    display: block; left: 10px; top: 24px; bottom: 0; 
+    width: 1px; height: auto; transform: none; 
+  }
+  .track-line-gold { 
+    display: block; left: 10px; top: 24px; 
+    width: 1.5px; height: var(--progress, 0%); max-width: none; transform: none; 
+  }
+  .step { padding: 0 0 0 40px; }
+  .step-node { position: absolute; left: 0; top: 0; margin-bottom: 0; }
+  
   .footer-cta { padding: 80px 24px; }
-  footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+  footer { padding: 32px 24px; flex-direction: column; gap: 16px; text-align: center; }
 }
 
 </style>
@@ -889,7 +938,10 @@ footer p {
     </svg>
     ON
   </a>
-  <div class="nav-links">
+  <div class="menu-toggle" id="menuToggle">
+    <span></span><span></span>
+  </div>
+  <div class="nav-links" id="navLinks">
     <a href="#nosotros">Quiénes somos</a>
     <a href="#servicios">Servicios</a>
     <a href="#contacto" class="cta">Contacto</a>
@@ -1358,6 +1410,24 @@ function showTab(i, btn) {
   draw();
 })();
 
+// ── MOBILE MENU ──
+(function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  if(menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+  }
+})();
+
 // ── SCROLL ANIMATIONS (Fade, Stagger, Reveal) ──
 (function() {
   const observer = new IntersectionObserver((entries, obs) => {
@@ -1402,7 +1472,7 @@ function showTab(i, btn) {
 
   function activateStep(i) {
     steps[i].classList.add('is-active');
-    goldLine.style.width = lineWidths[i];
+    document.getElementById('track').style.setProperty('--progress', lineWidths[i]);
   }
 
   function runSequence() {
