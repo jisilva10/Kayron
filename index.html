@@ -1383,7 +1383,7 @@ function showTab(i, btn) {
         const speed = el.getAttribute('data-speed') || 0.15;
         const rect = el.getBoundingClientRect();
         const yPos = (rect.top + rect.height / 2) - (window.innerHeight / 2);
-        el.style.transform = \`translateY(\${yPos * speed}px)\`;
+        el.style.transform = `translateY(${yPos * speed}px)`;
       });
     });
   }, { passive: true });
