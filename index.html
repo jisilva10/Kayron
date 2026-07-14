@@ -1249,8 +1249,12 @@ function showTab(i, btn) {
   const MAX_LINKS = 4;  // Allow more connections
 
   function resize() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
+    W = canvas.offsetWidth;
+    H = canvas.offsetHeight;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.scale(dpr, dpr);
     buildDots();
   }
 
