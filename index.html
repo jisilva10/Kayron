@@ -891,8 +891,14 @@ footer p {
 .menu-toggle.active span:nth-child(2) { transform: translateY(-7.5px) rotate(-45deg); }
 
 @media (max-width: 900px) {
-  nav { padding: 16px 24px; align-items: center; }
-  .menu-toggle { display: flex; }
+  nav, nav.scrolled { 
+    padding: 0; background: transparent; backdrop-filter: none; border-bottom: none; pointer-events: none; 
+  }
+  .nav-logo { display: none; }
+  .menu-toggle { 
+    display: flex; position: fixed; top: 24px; right: 24px; 
+    pointer-events: auto; margin: 0; padding: 12px;
+  }
   .nav-links {
     position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
     background: rgba(244,241,235,0.98); backdrop-filter: blur(12px);
