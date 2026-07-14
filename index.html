@@ -20,8 +20,8 @@
   --cream:  #F4F1EB;
   --white:  #FAFAF8;
   --dark:   #18180F;
-  --mid:    #5A5A52;
-  --light:  #C8C4BC;
+  --mid:    #40403A;
+  --light:  #8A8679;
   --gold:   #B89A0A;
   --border: #E2DDD5;
 }
@@ -211,8 +211,8 @@ nav.scrolled { border-bottom-color: var(--border); }
 .hero-copy p {
   font-family: 'DM Sans', sans-serif;
   font-weight: 300;
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: 16px;
+  line-height: 1.7;
   color: var(--mid);
   max-width: 380px;
 }
@@ -285,12 +285,9 @@ canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
   margin-bottom: 0;
 }
 .tab-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
-  font-size: 11px;
+  font-weight: 400;
+  font-size: 13px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--light);
@@ -301,22 +298,6 @@ canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
   position: relative;
   transition: color 0.2s;
 }
-.tab-timer {
-  width: 14px; height: 14px;
-  transform: rotate(-90deg);
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-.tab-btn.active .tab-timer {
-  opacity: 1;
-}
-.tab-btn.active .timer-progress {
-  animation: tabTimerAnim 6s linear forwards;
-}
-@keyframes tabTimerAnim {
-  0% { stroke-dashoffset: 62.8; }
-  100% { stroke-dashoffset: 0; }
-}
 .tab-btn::after {
   content: '';
   position: absolute;
@@ -324,10 +305,14 @@ canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
   height: 1.5px;
   background: var(--gold);
   transform: scaleX(0);
-  transition: transform 0.3s ease;
+  transform-origin: left;
 }
-.tab-btn.active { color: var(--dark); }
-.tab-btn.active::after { transform: scaleX(1); }
+.tab-btn.active { color: var(--dark); font-weight: 500; }
+.tab-btn.active::after { animation: tabLineAnim 10s linear forwards; }
+@keyframes tabLineAnim {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
 .tab-btn:hover { color: var(--dark); }
 
 .tab-panels { }
@@ -378,8 +363,8 @@ canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 .panel-response {
   font-family: 'DM Sans', sans-serif;
   font-weight: 300;
-  font-size: 15px;
-  line-height: 1.8;
+  font-size: 16px;
+  line-height: 1.7;
   color: var(--mid);
 }
 
@@ -603,8 +588,8 @@ canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 .manifesto-text em { font-style: italic; color: var(--gold); }
 .manifesto-sub {
   font-family: 'DM Sans', sans-serif;
-  font-weight: 300; font-size: 13px;
-  line-height: 1.85; color: var(--mid);
+  font-weight: 300; font-size: 16px;
+  line-height: 1.7; color: var(--mid);
   max-width: 500px; margin: 0 auto;
 }
 
@@ -1082,22 +1067,10 @@ footer p {
   </div>
 
   <div class="tabs-nav stagger-parent">
-    <button class="tab-btn active stagger-item" onclick="showTab(0, this)">
-      Procesos
-      <svg class="tab-timer" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="1.5" stroke="var(--border)" fill="none"/><circle cx="12" cy="12" r="10" stroke-width="1.5" stroke="var(--gold)" fill="none" stroke-dasharray="62.8" stroke-dashoffset="62.8" class="timer-progress"/></svg>
-    </button>
-    <button class="tab-btn stagger-item" onclick="showTab(1, this)">
-      Datos
-      <svg class="tab-timer" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="1.5" stroke="var(--border)" fill="none"/><circle cx="12" cy="12" r="10" stroke-width="1.5" stroke="var(--gold)" fill="none" stroke-dasharray="62.8" stroke-dashoffset="62.8" class="timer-progress"/></svg>
-    </button>
-    <button class="tab-btn stagger-item" onclick="showTab(2, this)">
-      Inteligencia Artificial
-      <svg class="tab-timer" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="1.5" stroke="var(--border)" fill="none"/><circle cx="12" cy="12" r="10" stroke-width="1.5" stroke="var(--gold)" fill="none" stroke-dasharray="62.8" stroke-dashoffset="62.8" class="timer-progress"/></svg>
-    </button>
-    <button class="tab-btn stagger-item" onclick="showTab(3, this)">
-      Competencia
-      <svg class="tab-timer" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="1.5" stroke="var(--border)" fill="none"/><circle cx="12" cy="12" r="10" stroke-width="1.5" stroke="var(--gold)" fill="none" stroke-dasharray="62.8" stroke-dashoffset="62.8" class="timer-progress"/></svg>
-    </button>
+    <button class="tab-btn active stagger-item" onclick="showTab(0, this)">Procesos</button>
+    <button class="tab-btn stagger-item" onclick="showTab(1, this)">Datos</button>
+    <button class="tab-btn stagger-item" onclick="showTab(2, this)">Inteligencia Artificial</button>
+    <button class="tab-btn stagger-item" onclick="showTab(3, this)">Competencia</button>
   </div>
 
   <div class="tab-panels">
@@ -1318,7 +1291,7 @@ function startTabAutoSwitch() {
     btns.forEach((b, idx) => { if (b.classList.contains('active')) activeIdx = idx; });
     const nextIdx = (activeIdx + 1) % btns.length;
     showTab(nextIdx, btns[nextIdx], true);
-  }, 6000); // 6 seconds to give time to read
+  }, 10000); // 10 seconds to give time to read
 }
 
 function showTab(i, btn, isAuto = false) {
