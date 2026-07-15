@@ -245,29 +245,8 @@ nav.scrolled { border-bottom-color: var(--border); }
   margin-top: 48px;
   overflow: hidden;
 }
-
-.grid-wrap::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 0;
-  background-image: repeating-linear-gradient(90deg, rgba(226, 221, 213, 0.5) 0px, rgba(226, 221, 213, 0.5) 1px, transparent 1px, transparent 38px);
-  animation: drawDown 2s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
-}
-
-.grid-wrap::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; bottom: 0;
-  width: 0;
-  background-image: repeating-linear-gradient(180deg, rgba(226, 221, 213, 0.5) 0px, rgba(226, 221, 213, 0.5) 1px, transparent 1px, transparent 38px);
-  animation: drawRight 2s cubic-bezier(0.22, 1, 0.36, 1) 1.6s forwards;
-}
-
 canvas { 
   position: absolute; inset: 0; width: 100%; height: 100%; 
-  opacity: 0;
-  animation: fadeIn 2s ease 2.2s forwards;
   z-index: 1;
 }
 
@@ -927,12 +906,6 @@ footer p {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
-@keyframes drawDown {
-  to { height: 100%; }
-}
-@keyframes drawRight {
-  to { width: 100%; }
-}
 @keyframes rShow   { to { opacity: 1; } }
 @keyframes rDraw   { from { width: 0; } to { width: 48px; } }
 @keyframes rSettle { from { margin-bottom: 0; } to { margin-bottom: 12px; } }
@@ -1430,6 +1403,7 @@ startTabAutoSwitch();
 
   let t = 0;
   let isVisible = true;
+  const initTime = Date.now();
   
   // Performance optimization: pause animation when hero is not visible
   const observer = new IntersectionObserver(entries => {
@@ -1444,6 +1418,13 @@ startTabAutoSwitch();
   function draw() {
     requestAnimationFrame(draw);
     if (!isVisible) return; // Skip calculation and rendering if not in viewport
+
+    const elapsed = Date.now() - initTime;
+    let easeProgress = 0;
+    if (elapsed > 1200) {
+      const p = Math.min(1, (elapsed - 1200) / 2500);
+      easeProgress = p === 1 ? 1 : 1 - Math.pow(2, -10 * p); // Expo ease out
+    }
 
     t += 0.015; // Increased speed
     ctx.clearRect(0, 0, W, H);
@@ -1505,23 +1486,32 @@ startTabAutoSwitch();
     });
 
     // Draw connections
+    const maxLineLength = CONNECT_R * easeProgress;
     for (let i = 0; i < pos.length; i++) {
       const a = pos[i]; let links = 0;
       for (let j = i+1; j < pos.length && links < MAX_LINKS; j++) {
         const b = pos[j];
         const dx = a.x-b.x, dy = a.y-b.y;
         const d = Math.sqrt(dx*dx + dy*dy);
-        if (d < CONNECT_R) {
+        if (d < CONNECT_R && maxLineLength > 0) {
           const s = 1 - d/CONNECT_R;
           const maxGold = Math.max(a.gold, b.gold);
           
           ctx.beginPath(); 
-          ctx.moveTo(a.x, a.y); 
-          ctx.lineTo(b.x, b.y);
+          if (d <= maxLineLength) {
+             ctx.moveTo(a.x, a.y); 
+             ctx.lineTo(b.x, b.y);
+          } else {
+             const reachRatio = maxLineLength / d;
+             ctx.moveTo(a.x, a.y);
+             ctx.lineTo(a.x - dx * reachRatio, a.y - dy * reachRatio);
+             ctx.moveTo(b.x, b.y);
+             ctx.lineTo(b.x + dx * reachRatio, b.y + dy * reachRatio);
+          }
           
           if (maxGold > 0.05) {
             ctx.strokeStyle = `rgba(184,154,10,${s * (0.15 + maxGold * 0.4)})`;
-            ctx.lineWidth = 0.5 + maxGold * 1.2; // Thicker connections for gold
+            ctx.lineWidth = 0.5 + maxGold * 1.2;
           } else {
             ctx.strokeStyle = `rgba(26,26,24,${s * 0.15})`;
             ctx.lineWidth = 0.5;
@@ -1534,13 +1524,14 @@ startTabAutoSwitch();
 
     // Draw dots
     pos.forEach(p => {
-      const alpha = 0.20 + p.dist * 0.5;
+      if (easeProgress === 0) return;
+      const alpha = (0.20 + p.dist * 0.5) * easeProgress;
       
       // Glow effect for gold dots
       if (p.gold > 0.05) {
-        const glowRadius = 4 + p.gold * 14;
+        const glowRadius = (4 + p.gold * 14) * easeProgress;
         const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowRadius);
-        g.addColorStop(0, `rgba(184,154,10,${p.gold * 0.4})`);
+        g.addColorStop(0, `rgba(184,154,10,${p.gold * 0.4 * easeProgress})`);
         g.addColorStop(1, 'rgba(184,154,10,0)');
         ctx.beginPath(); 
         ctx.arc(p.x, p.y, glowRadius, 0, Math.PI*2); 
@@ -1549,7 +1540,7 @@ startTabAutoSwitch();
       }
       
       ctx.beginPath(); 
-      const radius = 1.3 + p.gold * 2;
+      const radius = (1.3 + p.gold * 2) * easeProgress;
       ctx.arc(p.x, p.y, radius, 0, Math.PI*2);
       
       if (p.gold > 0.05) {
