@@ -1421,6 +1421,12 @@ startTabAutoSwitch();
 
     const elapsed = Date.now() - initTime;
     
+    // Dots fade in along with hero text from 500ms to 2300ms
+    let alphaProgress = 0;
+    if (elapsed > 500) {
+      alphaProgress = Math.min(1, (elapsed - 500) / 1800);
+    }
+
     // Lines sweep from left to right from 3500ms to 8000ms (4.5 seconds)
     const sweepProgress = Math.max(0, Math.min(1, (elapsed - 3500) / 4500));
     const sweepX = (W + CONNECT_R) * sweepProgress;
@@ -1553,7 +1559,10 @@ startTabAutoSwitch();
 
     // Draw dots
     pos.forEach(p => {
-      const alpha = 0.20 + p.dist * 0.5;
+      if (alphaProgress === 0) return;
+      
+      const baseAlpha = 0.20 + p.dist * 0.5;
+      const alpha = baseAlpha * alphaProgress;
       
       // Glow effect for gold dots
       if (p.gold > 0.05) {
@@ -1572,7 +1581,7 @@ startTabAutoSwitch();
       ctx.arc(p.x, p.y, radius, 0, Math.PI*2);
       
       if (p.gold > 0.05) {
-        ctx.fillStyle = `rgba(184,154,10,${Math.min(alpha + p.gold, 1)})`;
+        ctx.fillStyle = `rgba(184,154,10,${Math.min(alpha + p.gold, 1) * alphaProgress})`;
       } else {
         ctx.fillStyle = `rgba(26,26,24,${alpha})`;
       }
