@@ -1420,13 +1420,22 @@ startTabAutoSwitch();
     if (!isVisible) return; // Skip calculation and rendering if not in viewport
 
     const elapsed = Date.now() - initTime;
-    let easeProgress = 0;
-    if (elapsed > 1200) {
-      const p = Math.min(1, (elapsed - 1200) / 2500);
-      easeProgress = p === 1 ? 1 : 1 - Math.pow(2, -10 * p); // Expo ease out
-    }
+    
+    // Logo animation finishes around 2700ms. Don't draw anything until then.
+    if (elapsed < 2700) return;
 
-    t += 0.015; // Increased speed
+    // Dots pop in (scale up) from 2700ms to 3200ms
+    const dotProgress = Math.min(1, (elapsed - 2700) / 500);
+    const easeDot = dotProgress === 1 ? 1 : 1 - Math.pow(2, -10 * dotProgress);
+
+    // Lines reach out from 3000ms to 4500ms
+    let lineProgress = 0;
+    if (elapsed > 3000) {
+      lineProgress = Math.min(1, (elapsed - 3000) / 1500);
+    }
+    const easeLine = lineProgress === 1 ? 1 : 1 - Math.pow(2, -10 * lineProgress);
+
+    t += 0.015;
     ctx.clearRect(0, 0, W, H);
     
     // Manage 4 wandering pulses
@@ -1486,7 +1495,7 @@ startTabAutoSwitch();
     });
 
     // Draw connections
-    const maxLineLength = CONNECT_R * easeProgress;
+    const maxLineLength = CONNECT_R * easeLine;
     for (let i = 0; i < pos.length; i++) {
       const a = pos[i]; let links = 0;
       for (let j = i+1; j < pos.length && links < MAX_LINKS; j++) {
@@ -1510,10 +1519,10 @@ startTabAutoSwitch();
           }
           
           if (maxGold > 0.05) {
-            ctx.strokeStyle = `rgba(184,154,10,${s * (0.15 + maxGold * 0.4)})`;
+            ctx.strokeStyle = `rgba(184,154,10,${s * (0.2 + maxGold * 0.4)})`;
             ctx.lineWidth = 0.5 + maxGold * 1.2;
           } else {
-            ctx.strokeStyle = `rgba(26,26,24,${s * 0.15})`;
+            ctx.strokeStyle = `rgba(26,26,24,${s * 0.2})`;
             ctx.lineWidth = 0.5;
           }
           ctx.stroke(); 
@@ -1524,14 +1533,14 @@ startTabAutoSwitch();
 
     // Draw dots
     pos.forEach(p => {
-      if (easeProgress === 0) return;
-      const alpha = (0.20 + p.dist * 0.5) * easeProgress;
+      if (easeDot === 0) return;
+      const alpha = 0.20 + p.dist * 0.5;
       
       // Glow effect for gold dots
       if (p.gold > 0.05) {
-        const glowRadius = (4 + p.gold * 14) * easeProgress;
+        const glowRadius = (4 + p.gold * 14) * easeDot;
         const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowRadius);
-        g.addColorStop(0, `rgba(184,154,10,${p.gold * 0.4 * easeProgress})`);
+        g.addColorStop(0, `rgba(184,154,10,${p.gold * 0.4})`);
         g.addColorStop(1, 'rgba(184,154,10,0)');
         ctx.beginPath(); 
         ctx.arc(p.x, p.y, glowRadius, 0, Math.PI*2); 
@@ -1540,7 +1549,7 @@ startTabAutoSwitch();
       }
       
       ctx.beginPath(); 
-      const radius = (1.3 + p.gold * 2) * easeProgress;
+      const radius = (1.3 + p.gold * 2) * easeDot;
       ctx.arc(p.x, p.y, radius, 0, Math.PI*2);
       
       if (p.gold > 0.05) {
