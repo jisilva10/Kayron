@@ -462,32 +462,25 @@ canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 
 .founder-photo-col {
   position: relative;
-  overflow: hidden;
-  background: #E8E4DE;
+  background: var(--cream);
+  padding: 40px; /* This creates the frame effect by spacing the image inwards */
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
 }
-.founder-photo-col img {
+.founder-photo-frame {
+  position: relative;
+  width: 100%;
+  border: 1px solid var(--border); /* The actual border line */
+  background: #E8E4DE;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.founder-photo-frame img {
   width: 100%; height: 115%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 20%; /* Pushes the focus slightly up to "zoom out" the face */
   display: block;
-}
-.photo-ph {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 14px;
-}
-.photo-ph-ring {
-  width: 60px; height: 60px;
-  border-radius: 50%;
-  border: 1px solid var(--light);
-  display: flex; align-items: center; justify-content: center;
-}
-.photo-ph-ring svg { opacity: 0.25; }
-.photo-ph span {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 9px; letter-spacing: 0.25em;
-  color: var(--light); text-transform: uppercase; font-weight: 300;
 }
 .photo-name-tag {
   position: absolute; bottom: 0; left: 0; right: 0;
@@ -1139,10 +1132,12 @@ footer p {
 
   <div class="block-founder">
     <div class="founder-photo-col">
-      <img src="founder.jpg" alt="José Ignacio Silva" class="parallax" data-speed="0.08">
-      <div class="photo-name-tag">
-        <h3>José Ignacio Silva</h3>
-        <p>Fundador &amp; Consultor Principal</p>
+      <div class="founder-photo-frame">
+        <img src="founder.jpg" alt="José Ignacio Silva" class="parallax" data-speed="0.08">
+        <div class="photo-name-tag">
+          <h3>José Ignacio Silva</h3>
+          <p>Fundador &amp; Consultor Principal</p>
+        </div>
       </div>
     </div>
 
