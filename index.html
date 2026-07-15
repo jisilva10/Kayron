@@ -1421,19 +1421,19 @@ startTabAutoSwitch();
 
     const elapsed = Date.now() - initTime;
     
-    // Logo animation finishes around 2700ms. We wait 2 more seconds (4700ms).
-    if (elapsed < 4700) return;
+    // Logo animation finishes around 2700ms. We wait 0.8 seconds (3500ms).
+    if (elapsed < 3500) return;
 
-    // Dots pop in (scale up) smoothly from 4700ms to 6200ms (1.5 seconds)
-    const dotProgress = Math.min(1, (elapsed - 4700) / 1500);
+    // Dots pop in (scale up) smoothly from 3500ms to 5000ms (1.5 seconds)
+    const dotProgress = Math.min(1, (elapsed - 3500) / 1500);
     const easeDot = dotProgress === 1 ? 1 : 1 - Math.pow(2, -10 * dotProgress);
 
-    // Lines sweep from left to right from 6200ms to 10700ms (4.5 seconds)
-    const sweepProgress = Math.max(0, Math.min(1, (elapsed - 6200) / 4500));
+    // Lines sweep from left to right from 5000ms to 9500ms (4.5 seconds)
+    const sweepProgress = Math.max(0, Math.min(1, (elapsed - 5000) / 4500));
     const sweepX = (W + CONNECT_R) * sweepProgress;
 
-    // Start wave movement ONLY after 10700ms (when sweep completes)
-    if (elapsed > 10700) {
+    // Start wave movement ONLY after 9500ms (when sweep completes)
+    if (elapsed > 9500) {
       t += 0.015;
     }
     
