@@ -243,10 +243,33 @@ nav.scrolled { border-bottom-color: var(--border); }
   width: 100%;
   height: 240px;
   margin-top: 48px;
-  opacity: 0;
-  animation: fadeIn 1.2s ease 1.6s forwards;
+  overflow: hidden;
 }
-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.grid-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 0;
+  background-image: repeating-linear-gradient(90deg, rgba(226, 221, 213, 0.5) 0px, rgba(226, 221, 213, 0.5) 1px, transparent 1px, transparent 38px);
+  animation: drawDown 2s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
+}
+
+.grid-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 0;
+  background-image: repeating-linear-gradient(180deg, rgba(226, 221, 213, 0.5) 0px, rgba(226, 221, 213, 0.5) 1px, transparent 1px, transparent 38px);
+  animation: drawRight 2s cubic-bezier(0.22, 1, 0.36, 1) 1.6s forwards;
+}
+
+canvas { 
+  position: absolute; inset: 0; width: 100%; height: 100%; 
+  opacity: 0;
+  animation: fadeIn 2s ease 2.2s forwards;
+  z-index: 1;
+}
 
 /* ════════════════════════════════════════
    SECCIÓN — LO QUE FRENA
@@ -903,6 +926,12 @@ footer p {
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+@keyframes drawDown {
+  to { height: 100%; }
+}
+@keyframes drawRight {
+  to { width: 100%; }
 }
 @keyframes rShow   { to { opacity: 1; } }
 @keyframes rDraw   { from { width: 0; } to { width: 48px; } }
