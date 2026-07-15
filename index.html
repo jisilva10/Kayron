@@ -1421,19 +1421,12 @@ startTabAutoSwitch();
 
     const elapsed = Date.now() - initTime;
     
-    // Logo animation finishes around 2700ms. We wait 0.8 seconds (3500ms).
-    if (elapsed < 3500) return;
-
-    // Dots pop in (scale up) smoothly from 3500ms to 5000ms (1.5 seconds)
-    const dotProgress = Math.min(1, (elapsed - 3500) / 1500);
-    const easeDot = dotProgress === 1 ? 1 : 1 - Math.pow(2, -10 * dotProgress);
-
-    // Lines sweep from left to right from 5000ms to 9500ms (4.5 seconds)
-    const sweepProgress = Math.max(0, Math.min(1, (elapsed - 5000) / 4500));
+    // Lines sweep from left to right from 3500ms to 8000ms (4.5 seconds)
+    const sweepProgress = Math.max(0, Math.min(1, (elapsed - 3500) / 4500));
     const sweepX = (W + CONNECT_R) * sweepProgress;
 
-    // Start wave movement ONLY after 9500ms (when sweep completes)
-    if (elapsed > 9500) {
+    // Start wave movement ONLY after 8000ms (when sweep completes)
+    if (elapsed > 8000) {
       t += 0.015;
     }
     
@@ -1487,11 +1480,17 @@ startTabAutoSwitch();
          d.goldVal = Math.max(0, d.goldVal - 0.015); // Slow fade out (leaves a trail)
       }
 
+      const x = d.ox + nx * d.amp;
+      const y = d.oy + ny * d.amp;
+
+      // Force gold to 0 if the scanner hasn't reached it yet
+      const activeGold = (sweepX > x) ? d.goldVal : 0;
+
       return { 
-        x: d.ox + nx * d.amp, 
-        y: d.oy + ny * d.amp,
+        x, 
+        y,
         dist: Math.sqrt(nx*nx + ny*ny), 
-        gold: d.goldVal
+        gold: activeGold
       };
     });
 
@@ -1554,12 +1553,11 @@ startTabAutoSwitch();
 
     // Draw dots
     pos.forEach(p => {
-      if (easeDot === 0) return;
       const alpha = 0.20 + p.dist * 0.5;
       
       // Glow effect for gold dots
       if (p.gold > 0.05) {
-        const glowRadius = (4 + p.gold * 14) * easeDot;
+        const glowRadius = 4 + p.gold * 14;
         const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowRadius);
         g.addColorStop(0, `rgba(184,154,10,${p.gold * 0.4})`);
         g.addColorStop(1, 'rgba(184,154,10,0)');
@@ -1570,7 +1568,7 @@ startTabAutoSwitch();
       }
       
       ctx.beginPath(); 
-      const radius = (1.3 + p.gold * 2) * easeDot;
+      const radius = 1.3 + p.gold * 2;
       ctx.arc(p.x, p.y, radius, 0, Math.PI*2);
       
       if (p.gold > 0.05) {
