@@ -1428,14 +1428,15 @@ startTabAutoSwitch();
     const dotProgress = Math.min(1, (elapsed - 2700) / 500);
     const easeDot = dotProgress === 1 ? 1 : 1 - Math.pow(2, -10 * dotProgress);
 
-    // Lines reach out from 3000ms to 4500ms
-    let lineProgress = 0;
-    if (elapsed > 3000) {
-      lineProgress = Math.min(1, (elapsed - 3000) / 1500);
-    }
-    const easeLine = lineProgress === 1 ? 1 : 1 - Math.pow(2, -10 * lineProgress);
+    // Lines sweep from left to right from 3200ms to 6200ms
+    const sweepProgress = Math.max(0, Math.min(1, (elapsed - 3200) / 3000));
+    const sweepX = (W + CONNECT_R) * sweepProgress;
 
-    t += 0.015;
+    // Start wave movement ONLY after 6200ms (when sweep completes)
+    if (elapsed > 6200) {
+      t += 0.015;
+    }
+    
     ctx.clearRect(0, 0, W, H);
     
     // Manage 4 wandering pulses
@@ -1494,39 +1495,59 @@ startTabAutoSwitch();
       };
     });
 
-    // Draw connections
-    const maxLineLength = CONNECT_R * easeLine;
+    // Draw connections based on sweep
     for (let i = 0; i < pos.length; i++) {
       const a = pos[i]; let links = 0;
       for (let j = i+1; j < pos.length && links < MAX_LINKS; j++) {
         const b = pos[j];
         const dx = a.x-b.x, dy = a.y-b.y;
         const d = Math.sqrt(dx*dx + dy*dy);
-        if (d < CONNECT_R && maxLineLength > 0) {
-          const s = 1 - d/CONNECT_R;
-          const maxGold = Math.max(a.gold, b.gold);
+        if (d < CONNECT_R) {
           
-          ctx.beginPath(); 
-          if (d <= maxLineLength) {
-             ctx.moveTo(a.x, a.y); 
-             ctx.lineTo(b.x, b.y);
-          } else {
-             const reachRatio = maxLineLength / d;
-             ctx.moveTo(a.x, a.y);
-             ctx.lineTo(a.x - dx * reachRatio, a.y - dy * reachRatio);
-             ctx.moveTo(b.x, b.y);
-             ctx.lineTo(b.x + dx * reachRatio, b.y + dy * reachRatio);
+          let leftNode = a.x < b.x ? a : b;
+          let rightNode = a.x < b.x ? b : a;
+          if (a.x === b.x) {
+             leftNode = a.y < b.y ? a : b;
+             rightNode = a.y < b.y ? b : a;
           }
-          
-          if (maxGold > 0.05) {
-            ctx.strokeStyle = `rgba(184,154,10,${s * (0.2 + maxGold * 0.4)})`;
-            ctx.lineWidth = 0.5 + maxGold * 1.2;
-          } else {
-            ctx.strokeStyle = `rgba(26,26,24,${s * 0.2})`;
-            ctx.lineWidth = 0.5;
+
+          let drawLine = false;
+          let endX, endY;
+
+          if (sweepX >= rightNode.x) {
+             drawLine = true;
+             endX = rightNode.x;
+             endY = rightNode.y;
+          } else if (sweepX > leftNode.x) {
+             drawLine = true;
+             const diffX = rightNode.x - leftNode.x;
+             if (diffX > 0) {
+               const ratio = (sweepX - leftNode.x) / diffX;
+               endX = sweepX;
+               endY = leftNode.y + (rightNode.y - leftNode.y) * ratio;
+             } else {
+               endX = rightNode.x;
+               endY = rightNode.y;
+             }
           }
-          ctx.stroke(); 
-          links++;
+
+          if (drawLine) {
+             const s = 1 - d/CONNECT_R;
+             const maxGold = Math.max(a.gold, b.gold);
+             ctx.beginPath(); 
+             ctx.moveTo(leftNode.x, leftNode.y); 
+             ctx.lineTo(endX, endY);
+             
+             if (maxGold > 0.05) {
+               ctx.strokeStyle = `rgba(184,154,10,${s * (0.2 + maxGold * 0.4)})`;
+               ctx.lineWidth = 0.5 + maxGold * 1.2;
+             } else {
+               ctx.strokeStyle = `rgba(26,26,24,${s * 0.2})`;
+               ctx.lineWidth = 0.5;
+             }
+             ctx.stroke(); 
+             links++;
+          }
         }
       }
     }
