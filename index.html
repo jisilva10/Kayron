@@ -156,7 +156,7 @@ nav.scrolled { border-bottom-color: var(--border); }
   line-height: 1.65;
   color: #888;
   opacity: 0;
-  animation: fadeUp 1.8s ease 2.7s forwards;
+  animation: fadeUp 1.8s ease 2.2s forwards;
 }
 
 /* derecha */
@@ -1428,12 +1428,12 @@ startTabAutoSwitch();
     const dotProgress = Math.min(1, (elapsed - 4700) / 1500);
     const easeDot = dotProgress === 1 ? 1 : 1 - Math.pow(2, -10 * dotProgress);
 
-    // Lines sweep very slowly from left to right from 6200ms to 12200ms (6 seconds)
-    const sweepProgress = Math.max(0, Math.min(1, (elapsed - 6200) / 6000));
+    // Lines sweep from left to right from 6200ms to 10700ms (4.5 seconds)
+    const sweepProgress = Math.max(0, Math.min(1, (elapsed - 6200) / 4500));
     const sweepX = (W + CONNECT_R) * sweepProgress;
 
-    // Start wave movement ONLY after 12200ms (when sweep completes)
-    if (elapsed > 12200) {
+    // Start wave movement ONLY after 10700ms (when sweep completes)
+    if (elapsed > 10700) {
       t += 0.015;
     }
     
