@@ -146,7 +146,7 @@ nav.scrolled { border-bottom-color: var(--border); }
   text-transform: uppercase;
   margin-bottom: 40px;
   opacity: 0;
-  animation: fadeUp 0.7s ease 1.7s forwards;
+  animation: fadeUp 1.8s ease 3.2s forwards;
 }
 
 .hero-definition {
@@ -156,7 +156,7 @@ nav.scrolled { border-bottom-color: var(--border); }
   line-height: 1.65;
   color: #888;
   opacity: 0;
-  animation: fadeUp 0.7s ease 2.7s forwards;
+  animation: fadeUp 1.8s ease 4.2s forwards;
 }
 
 /* derecha */
@@ -185,14 +185,14 @@ nav.scrolled { border-bottom-color: var(--border); }
   text-transform: uppercase;
   margin-bottom: 28px;
   opacity: 0;
-  animation: fadeUp 0.7s ease 0.5s forwards;
+  animation: fadeUp 1.8s ease 2.8s forwards;
 }
 
 /* bloque copy hero */
 .hero-copy {
   margin-bottom: 40px;
   opacity: 0;
-  animation: fadeUp 0.8s ease 0.7s forwards;
+  animation: fadeUp 1.8s ease 3.4s forwards;
 }
 .hero-copy h2 {
   font-family: 'Cormorant', serif;
@@ -231,7 +231,7 @@ nav.scrolled { border-bottom-color: var(--border); }
   padding: 16px 32px;
   text-decoration: none;
   opacity: 0;
-  animation: fadeUp 0.7s ease 1.0s forwards;
+  animation: fadeUp 1.8s ease 4.0s forwards;
   transition: background 0.2s;
 }
 .hero-cta:hover { background: var(--gold); }
@@ -1421,19 +1421,19 @@ startTabAutoSwitch();
 
     const elapsed = Date.now() - initTime;
     
-    // Logo animation finishes around 2700ms. Don't draw anything until then.
-    if (elapsed < 2700) return;
+    // Logo animation finishes around 2700ms. We wait 2 more seconds (4700ms).
+    if (elapsed < 4700) return;
 
-    // Dots pop in (scale up) from 2700ms to 3200ms
-    const dotProgress = Math.min(1, (elapsed - 2700) / 500);
+    // Dots pop in (scale up) smoothly from 4700ms to 6200ms (1.5 seconds)
+    const dotProgress = Math.min(1, (elapsed - 4700) / 1500);
     const easeDot = dotProgress === 1 ? 1 : 1 - Math.pow(2, -10 * dotProgress);
 
-    // Lines sweep from left to right from 3200ms to 6200ms
-    const sweepProgress = Math.max(0, Math.min(1, (elapsed - 3200) / 3000));
+    // Lines sweep very slowly from left to right from 6200ms to 12200ms (6 seconds)
+    const sweepProgress = Math.max(0, Math.min(1, (elapsed - 6200) / 6000));
     const sweepX = (W + CONNECT_R) * sweepProgress;
 
-    // Start wave movement ONLY after 6200ms (when sweep completes)
-    if (elapsed > 6200) {
+    // Start wave movement ONLY after 12200ms (when sweep completes)
+    if (elapsed > 12200) {
       t += 0.015;
     }
     
