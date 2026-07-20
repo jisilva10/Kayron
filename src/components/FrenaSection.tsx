@@ -35,20 +35,29 @@ const FrenaSection: React.FC = () => {
       </div>
 
       {/* Pill-style Segmented Control */}
-      <div className="stagger-parent relative mb-12 flex gap-2 p-1.5 rounded-xl bg-border/50 border border-border self-start overflow-x-auto no-scrollbar w-max max-w-full">
-        {tabs.map((tab, index) => (
-          <button
-            key={index}
-            className={`relative py-3 px-6 text-[12px] font-sans tracking-[0.15em] uppercase transition-all whitespace-nowrap outline-none border-none cursor-pointer stagger-item rounded-lg ${
-              activeTab === index 
-                ? 'text-dark font-semibold shadow-sm bg-white' 
-                : 'text-mid hover:text-dark bg-transparent'
-            }`}
-            onClick={() => setActiveTab(index)}
-          >
-            <span className="relative z-10">{tab.title}</span>
-          </button>
-        ))}
+      <div className="stagger-parent relative mb-16 flex gap-1 p-2 rounded-full bg-white border border-border/80 shadow-sm self-start overflow-x-auto no-scrollbar w-full sm:w-max max-w-full">
+        {tabs.map((tab, index) => {
+          const isActive = activeTab === index;
+          return (
+            <button
+              key={index}
+              onClick={() => setActiveTab(index)}
+              className={`relative py-3.5 px-8 text-[11px] font-sans tracking-[0.2em] uppercase transition-colors duration-300 outline-none border-none cursor-pointer rounded-full flex-shrink-0 whitespace-nowrap stagger-item ${
+                isActive ? 'text-cream font-semibold' : 'text-mid hover:text-dark font-medium'
+              }`}
+            >
+              {isActive && (
+                <motion.div
+                  layoutId="activeTabIndicatorFrena"
+                  className="absolute inset-0 bg-dark rounded-full"
+                  initial={false}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">{tab.title}</span>
+            </button>
+          );
+        })}
       </div>
 
       {/* Tab Content with Absolute Positioning to prevent layout jumps */}
