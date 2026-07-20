@@ -186,10 +186,10 @@ export function useLegacyAnimations() {
                   ctx.lineTo(endX, endY);
 
                   if (maxGold > 0.05) {
-                    ctx.strokeStyle = \`rgba(184,154,10,\${s * (0.2 + maxGold * 0.4)})\`;
+                    ctx.strokeStyle = `rgba(184,154,10,${s * (0.2 + maxGold * 0.4)})`;
                     ctx.lineWidth = 0.5 + maxGold * 1.2;
                   } else {
-                    ctx.strokeStyle = \`rgba(26,26,24,\${s * 0.2})\`;
+                    ctx.strokeStyle = `rgba(26,26,24,${s * 0.2})`;
                     ctx.lineWidth = 0.5;
                   }
                   ctx.stroke();
@@ -208,7 +208,7 @@ export function useLegacyAnimations() {
             if (p.gold > 0.05) {
               const glowRadius = 4 + p.gold * 14;
               const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowRadius);
-              g.addColorStop(0, \`rgba(184,154,10,\${p.gold * 0.4})\`);
+              g.addColorStop(0, `rgba(184,154,10,${p.gold * 0.4})`);
               g.addColorStop(1, "rgba(184,154,10,0)");
               ctx.beginPath();
               ctx.arc(p.x, p.y, glowRadius, 0, Math.PI * 2);
@@ -221,9 +221,9 @@ export function useLegacyAnimations() {
             ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
 
             if (p.gold > 0.05) {
-              ctx.fillStyle = \`rgba(184,154,10,\${Math.min(alpha + p.gold, 1) * alphaProgress})\`;
+              ctx.fillStyle = `rgba(184,154,10,${Math.min(alpha + p.gold, 1) * alphaProgress})`;
             } else {
-              ctx.fillStyle = \`rgba(26,26,24,\${alpha})\`;
+              ctx.fillStyle = `rgba(26,26,24,${alpha})`;
             }
             ctx.fill();
           });
@@ -280,7 +280,7 @@ export function useLegacyAnimations() {
           const speed = parseFloat(element.getAttribute("data-speed") || "0.15");
           const rect = element.getBoundingClientRect();
           const yPos = rect.top + rect.height / 2 - window.innerHeight / 2;
-          element.style.transform = \`translateY(\${yPos * speed}px)\`;
+          element.style.transform = `translateY(${yPos * speed}px)`;
         });
       });
     };
