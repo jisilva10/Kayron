@@ -1,4 +1,4 @@
-import { AnimatedTabs } from "@/components/ui/animated-tabs"
+import { AnimatedTabs } from "./ui/animated-tabs"
 
 const AnimatedTabsDemo = () => {
     return (
