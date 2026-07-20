@@ -1,6 +1,9 @@
 import { AnimatedTabsDemo } from "@/components/demo";
+import { useLegacyAnimations } from "@/hooks/useLegacyAnimations";
 
 export default function App() {
+  useLegacyAnimations();
+
   return (
     <>
 
