@@ -130,11 +130,10 @@ export default function App() {
     <div className="section-index parallax" data-speed="0.15">02</div>
     <div className="header-content fade-up-scroll">
       <div>
-        <div className="header-label">Quiénes somos</div>
-        <h2 className="header-title reveal-text">
-          <span>Un nombre con<br />
-          <em>2.500 años</em><br />
-          de historia detrás.</span>
+        <div className="header-label">El Origen</div>
+        <h2 className="header-title reveal-text" style={{ fontSize: '3rem', lineHeight: '1.1', marginBottom: '1rem' }}>
+          <span>¿Qué significa<br />
+          <em>Kayron?</em></span>
         </h2>
       </div>
       <div>
