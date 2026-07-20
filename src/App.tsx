@@ -1,4 +1,4 @@
-import { AnimatedTabsDemo } from "./components/demo";
+import FrenaSection from "./components/FrenaSection";
 import { useLegacyAnimations } from "@/hooks/useLegacyAnimations";
 
 export default function App() {
@@ -88,7 +88,7 @@ export default function App() {
 </section>
 
 
-      <AnimatedTabsDemo />
+      <FrenaSection />
 
 
 <section className="about" id="nosotros">
