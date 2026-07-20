@@ -38,8 +38,10 @@ const FrenaSection: React.FC = () => {
         {tabs.map((tab, index) => (
           <button
             key={index}
-            className={`relative py-4 px-6 text-[13px] font-sans tracking-[0.18em] uppercase transition-colors whitespace-nowrap outline-none stagger-item ${
-              activeTab === index ? 'text-dark font-medium' : 'text-mid hover:text-dark'
+            className={`tab-btn relative px-8 py-4 text-[13px] font-sans tracking-[0.18em] uppercase transition-all whitespace-nowrap outline-none bg-transparent border-none cursor-pointer stagger-item rounded-t-xl ${
+              activeTab === index 
+                ? 'text-dark font-bold bg-dark/[0.03]' 
+                : 'text-light opacity-70 hover:opacity-100 hover:text-dark hover:bg-dark/[0.01]'
             }`}
             onClick={() => setActiveTab(index)}
           >
@@ -47,8 +49,8 @@ const FrenaSection: React.FC = () => {
             {activeTab === index && (
               <motion.div
                 layoutId="frena-tab-indicator"
-                className="absolute bottom-[-1px] left-0 right-0 h-[1.5px] bg-gold"
-                transition={{ type: "spring", duration: 0.6 }}
+                className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-gold"
+                transition={{ type: "spring", duration: 0.5, bounce: 0.2 }}
               />
             )}
           </button>
@@ -56,13 +58,13 @@ const FrenaSection: React.FC = () => {
       </div>
 
       <div className="tab-panels relative min-h-[280px]">
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout">
           <motion.div
             key={activeTab}
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            exit={{ opacity: 0, y: -15, filter: "blur(4px)" }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
             className="tab-panel active"
             style={{ display: 'grid' }}
           >
