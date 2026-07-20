@@ -59,24 +59,24 @@ const AnimatedTabs = ({
   if (!tabs?.length) return null;
 
   return (
-    <div className={cn("w-full flex flex-col gap-y-8", className)}>
-      {/* Tabs Navigation */}
-      <div className="flex gap-0 border-b border-border mb-0 w-full overflow-x-auto no-scrollbar">
+    <div className={cn("w-full flex flex-col gap-y-6", className)}>
+      {/* Tabs Navigation (Pill/Segmented Control style) */}
+      <div className="flex flex-wrap gap-2 p-1.5 rounded-xl bg-dark/5 backdrop-blur-sm border border-border/50 self-start">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={cn(
-              "relative px-8 py-4 text-[13px] font-sans tracking-[0.18em] uppercase outline-none transition-colors",
+              "relative px-6 py-2.5 text-[11px] font-sans tracking-[0.18em] uppercase rounded-lg outline-none transition-colors",
               activeTab === tab.id
                 ? "text-dark font-medium"
-                : "text-light hover:text-dark font-normal"
+                : "text-mid hover:text-dark font-normal"
             )}
           >
             {activeTab === tab.id && (
               <motion.div
-                layoutId="active-tab-underline"
-                className="absolute left-0 right-0 bottom-[-1px] h-[1.5px] bg-gold"
+                layoutId="active-tab"
+                className="absolute inset-0 bg-white shadow-sm rounded-lg"
                 transition={{ type: "spring", duration: 0.6 }}
               />
             )}
@@ -86,7 +86,7 @@ const AnimatedTabs = ({
       </div>
 
       {/* Tab Content */}
-      <div className="w-full relative min-h-[300px]">
+      <div className="w-full relative min-h-[300px] p-8 rounded-2xl bg-white/40 border border-border/30 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden">
         <AnimatePresence mode="wait">
           {tabs.map(
             (tab) =>
@@ -95,15 +95,18 @@ const AnimatedTabs = ({
                   key={tab.id}
                   initial={{
                     opacity: 0,
-                    y: 10,
+                    scale: 0.98,
+                    x: -10,
+                    filter: "blur(4px)",
                   }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, scale: 1, x: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, scale: 0.98, x: 10, filter: "blur(4px)" }}
                   transition={{
-                    duration: 0.8,
-                    ease: "circOut",
+                    duration: 0.5,
+                    ease: "circInOut",
+                    type: "spring",
                   }}
-                  className="w-full"
+                  className="w-full h-full"
                 >
                   {tab.content}
                 </motion.div>
