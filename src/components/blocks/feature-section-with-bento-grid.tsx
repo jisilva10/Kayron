@@ -39,20 +39,10 @@ export function FeaturesSectionWithBentoGrid() {
     },
   ];
   return (
-    <div className="relative z-20 py-10 lg:py-20 max-w-7xl mx-auto">
-      <div className="px-8">
-        <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-cormorant font-medium text-dark">
-          Packed with thousands of features
-        </h4>
-
-        <p className="text-sm lg:text-base max-w-2xl my-4 mx-auto text-mid text-center font-normal">
-          From Image generation to video generation, Everything AI has APIs for
-          literally everything. It can even create this website copy for you.
-        </p>
-      </div>
+    <div className="relative z-20 pb-10 lg:pb-20 max-w-[1200px] mx-auto w-full px-6 md:px-12">
 
       <div className="relative">
-        <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-6 mt-12 xl:border border-border bg-white rounded-md">
+        <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-6 border border-border bg-white rounded-xl shadow-sm">
           {features.map((feature) => (
             <FeatureCard key={feature.title} className={feature.className}>
               <FeatureTitle>{feature.title}</FeatureTitle>
@@ -74,7 +64,7 @@ const FeatureCard = ({
   className?: string;
 }) => {
   return (
-    <div className={cn(`p-4 sm:p-8 relative overflow-hidden`, className)}>
+    <div className={cn(`p-6 sm:p-10 relative overflow-hidden flex flex-col justify-start`, className)}>
       {children}
     </div>
   );
@@ -82,9 +72,9 @@ const FeatureCard = ({
 
 const FeatureTitle = ({ children }: { children?: React.ReactNode }) => {
   return (
-    <p className="max-w-5xl mx-auto text-left tracking-tight text-dark text-xl md:text-2xl md:leading-snug font-cormorant font-medium">
+    <h3 className="w-full text-left tracking-tight text-dark text-2xl md:text-3xl font-cormorant font-semibold mb-2 relative z-20">
       {children}
-    </p>
+    </h3>
   );
 };
 
@@ -92,9 +82,8 @@ const FeatureDescription = ({ children }: { children?: React.ReactNode }) => {
   return (
     <p
       className={cn(
-        "text-sm md:text-base max-w-4xl text-left mx-auto",
-        "text-mid font-normal",
-        "text-left max-w-sm mx-0 md:text-sm my-2"
+        "w-full text-left",
+        "text-sm md:text-base text-mid font-sans font-normal leading-relaxed mb-6 relative z-20"
       )}
     >
       {children}
