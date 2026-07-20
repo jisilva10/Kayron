@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface Tab {
@@ -87,27 +87,29 @@ const AnimatedTabs = ({
 
       {/* Tab Content */}
       <div className="w-full relative min-h-[300px]">
-        {tabs.map(
-          (tab) =>
-            activeTab === tab.id && (
-              <motion.div
-                key={tab.id}
-                initial={{
-                  opacity: 0,
-                  y: 10,
-                }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{
-                  duration: 0.8,
-                  ease: "circOut",
-                }}
-                className="w-full"
-              >
-                {tab.content}
-              </motion.div>
-            )
-        )}
+        <AnimatePresence mode="wait">
+          {tabs.map(
+            (tab) =>
+              activeTab === tab.id && (
+                <motion.div
+                  key={tab.id}
+                  initial={{
+                    opacity: 0,
+                    y: 10,
+                  }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{
+                    duration: 0.8,
+                    ease: "circOut",
+                  }}
+                  className="w-full"
+                >
+                  {tab.content}
+                </motion.div>
+              )
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

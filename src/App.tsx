@@ -10,17 +10,17 @@ export default function App() {
   <a className="nav-logo" href="#">
     KAYR
     <svg width="16" height="12" viewBox="0 0 22 16" fill="none">
-      <rect x="5" y="2" width="12" height="12" rx="1.5" stroke="#B89A0A" stroke-width="1.2" fill="none"/>
-      <line x1="5" y1="5.5" x2="2" y2="5.5" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-      <line x1="5" y1="10.5" x2="2" y2="10.5" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-      <line x1="17" y1="5.5" x2="20" y2="5.5" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-      <line x1="17" y1="10.5" x2="20" y2="10.5" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-      <line x1="8" y1="2" x2="8" y2="0" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-      <line x1="11" y1="2" x2="11" y2="0" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-      <line x1="14" y1="2" x2="14" y2="0" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-      <line x1="8" y1="14" x2="8" y2="16" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-      <line x1="11" y1="14" x2="11" y2="16" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-      <line x1="14" y1="14" x2="14" y2="16" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
+      <rect x="5" y="2" width="12" height="12" rx="1.5" stroke="#B89A0A" strokeWidth="1.2" fill="none"/>
+      <line x1="5" y1="5.5" x2="2" y2="5.5" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="5" y1="10.5" x2="2" y2="10.5" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="17" y1="5.5" x2="20" y2="5.5" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="17" y1="10.5" x2="20" y2="10.5" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="8" y1="2" x2="8" y2="0" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="11" y1="2" x2="11" y2="0" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="14" y1="2" x2="14" y2="0" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="8" y1="14" x2="8" y2="16" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="11" y1="14" x2="11" y2="16" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="14" y1="14" x2="14" y2="16" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
       <circle cx="11" cy="8" r="2" fill="#B89A0A"/>
     </svg>
     ON
@@ -42,17 +42,17 @@ export default function App() {
     <div className="hero-wordmark">
       KAYR
       <svg className="chip-bounce" width="0.75em" height="0.55em" viewBox="0 0 22 16" fill="none">
-        <rect x="5" y="2" width="12" height="12" rx="1.5" stroke="#B89A0A" stroke-width="1.2" fill="none"/>
-        <line x1="5" y1="5.5" x2="2" y2="5.5" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-        <line x1="5" y1="10.5" x2="2" y2="10.5" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-        <line x1="17" y1="5.5" x2="20" y2="5.5" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-        <line x1="17" y1="10.5" x2="20" y2="10.5" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-        <line x1="8" y1="2" x2="8" y2="0" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-        <line x1="11" y1="2" x2="11" y2="0" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-        <line x1="14" y1="2" x2="14" y2="0" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-        <line x1="8" y1="14" x2="8" y2="16" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-        <line x1="11" y1="14" x2="11" y2="16" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
-        <line x1="14" y1="14" x2="14" y2="16" stroke="#B89A0A" stroke-width="1" stroke-linecap="round"/>
+        <rect x="5" y="2" width="12" height="12" rx="1.5" stroke="#B89A0A" strokeWidth="1.2" fill="none"/>
+        <line x1="5" y1="5.5" x2="2" y2="5.5" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+        <line x1="5" y1="10.5" x2="2" y2="10.5" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+        <line x1="17" y1="5.5" x2="20" y2="5.5" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+        <line x1="17" y1="10.5" x2="20" y2="10.5" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+        <line x1="8" y1="2" x2="8" y2="0" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+        <line x1="11" y1="2" x2="11" y2="0" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+        <line x1="14" y1="2" x2="14" y2="0" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+        <line x1="8" y1="14" x2="8" y2="16" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+        <line x1="11" y1="14" x2="11" y2="16" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+        <line x1="14" y1="14" x2="14" y2="16" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
         <circle cx="11" cy="8" r="2" fill="#B89A0A"/>
       </svg>
       ON
