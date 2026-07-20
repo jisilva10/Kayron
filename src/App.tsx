@@ -1,5 +1,6 @@
 import FrenaSection from "./components/FrenaSection";
 import { useLegacyAnimations } from "@/hooks/useLegacyAnimations";
+import { FeaturesSectionWithBentoGrid } from './components/blocks/feature-section-with-bento-grid';
 
 export default function App() {
   useLegacyAnimations();
@@ -122,18 +123,28 @@ export default function App() {
   </div>
 </section>
 
-
+<section className="services" id="servicios-bento">
+  <div className="block-header" style={{ paddingBottom: '0' }}>
+    <div className="section-index parallax" data-speed="0.15">02</div>
+    <div className="header-content fade-up-scroll">
+      <div>
+        <div className="header-label">Nuestros Servicios</div>
+      </div>
+    </div>
+  </div>
+  <FeaturesSectionWithBentoGrid />
+</section>
 
 <section className="about" id="nosotros">
 
   <div className="block-header">
-    <div className="section-index parallax" data-speed="0.15">02</div>
+    <div className="section-index parallax" data-speed="0.15">03</div>
     <div className="header-content fade-up-scroll">
       <div>
         <div className="header-label">El Origen</div>
         <h2 className="header-title reveal-text" style={{ fontSize: '3rem', lineHeight: '1.1', marginBottom: '1rem' }}>
-          <span>¿Qué significa<br />
-          <em>Kayron?</em></span>
+          <span>¿QUÉ SIGNIFICA<br />
+          <em>KAYR·ON?</em></span>
         </h2>
       </div>
       <div>
