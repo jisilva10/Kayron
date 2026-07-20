@@ -35,26 +35,37 @@ const FrenaSection: React.FC = () => {
       </div>
 
       {/* Pill-style Segmented Control */}
-      <div className="stagger-parent relative mb-12 flex gap-2 p-2 rounded-full bg-white border border-border shadow-md self-start overflow-x-auto no-scrollbar w-full sm:w-max max-w-full items-center">
+      <div className="stagger-parent relative mb-12 flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar w-full max-w-full" style={{ gap: '8px', padding: '6px', borderRadius: '999px', border: '1px solid var(--border)' }}>
         {tabs.map((tab, index) => {
           const isActive = activeTab === index;
           return (
             <button
               key={index}
               onClick={() => setActiveTab(index)}
-              className={`relative h-12 px-6 flex items-center justify-center text-[12px] font-sans tracking-[0.15em] uppercase transition-colors duration-300 outline-none border-none cursor-pointer rounded-full flex-shrink-0 whitespace-nowrap stagger-item ${
-                isActive ? 'text-cream font-semibold' : 'text-mid hover:text-dark font-medium'
-              }`}
+              className="relative outline-none border-none cursor-pointer flex-shrink-0 whitespace-nowrap stagger-item flex items-center justify-center transition-colors duration-300"
+              style={{
+                height: '44px',
+                padding: '0 24px',
+                borderRadius: '999px',
+                backgroundColor: 'transparent',
+                fontFamily: 'var(--font-sans)',
+                fontSize: '11px',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                color: isActive ? 'var(--cream)' : 'var(--mid)',
+                fontWeight: isActive ? 600 : 500
+              }}
             >
               {isActive && (
                 <motion.div
                   layoutId="activeTabIndicatorFrena"
-                  className="absolute inset-0 h-full w-full bg-dark rounded-full shadow-md"
+                  className="absolute inset-0 shadow-md"
+                  style={{ backgroundColor: 'var(--dark)', borderRadius: '999px' }}
                   initial={false}
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
-              <span className="relative z-10 block">{tab.title}</span>
+              <span className="relative z-10 block" style={{ color: isActive ? 'var(--cream)' : 'var(--mid)' }}>{tab.title}</span>
             </button>
           );
         })}
