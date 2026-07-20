@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@source "../";
+
 @theme {
   --color-cream: #F4F1EB;
   --color-white: #FAFAF8;
