@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Youtube } from "lucide-react";
+import { IconBrandYoutubeFilled } from "@tabler/icons-react";
 
 export function FeaturesSectionWithBentoGrid() {
   const features = [
@@ -132,7 +132,7 @@ export const SkeletonThree = () => {
     >
       <div className="w-full mx-auto bg-transparent group h-full">
         <div className="flex flex-1 w-full h-full flex-col space-y-2 relative">
-          <Youtube className="h-20 w-20 absolute z-10 inset-0 text-red-500 m-auto" />
+          <IconBrandYoutubeFilled className="h-20 w-20 absolute z-10 inset-0 text-red-500 m-auto" />
           <img
             src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop"
             alt="header"
@@ -253,7 +253,8 @@ export const Globe = ({ className }: { className?: string }) => {
         { location: [37.7595, -122.4367], size: 0.03 },
         { location: [40.7128, -74.006], size: 0.1 },
       ],
-      onRender: (state) => {
+      // @ts-ignore
+      onRender: (state: any) => {
         state.phi = phi;
         phi += 0.01;
       },
