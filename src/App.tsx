@@ -91,6 +91,39 @@ export default function App() {
       <FrenaSection />
 
 
+<section className="process" id="proceso">
+  <div className="process-header">
+    <h2>Cómo trabajamos</h2>
+    <p>Eliminamos la fricción. Un camino claro desde el primer contacto hasta el resultado final.</p>
+  </div>
+
+  <div className="track" id="track">
+    <div className="track-line-bg"></div>
+    <div className="track-line-gold" id="goldLine"></div>
+
+    <div className="step" id="step1">
+      <div className="step-node"></div>
+      <span className="step-index">/ 01</span>
+      <h3 className="step-title">Conversación</h3>
+      <p className="step-body">Hablamos 30 minutos, entendemos tu situación sin compromiso.</p>
+    </div>
+    <div className="step" id="step2">
+      <div className="step-node"></div>
+      <span className="step-index">/ 02</span>
+      <h3 className="step-title">Diagnóstico</h3>
+      <p className="step-body">Mapeamos tus procesos y te presentamos un plan concreto.</p>
+    </div>
+    <div className="step" id="step3">
+      <div className="step-node"></div>
+      <span className="step-index">/ 03</span>
+      <h3 className="step-title">Ejecución</h3>
+      <p className="step-body">Implementamos, medimos y ajustamos contigo.</p>
+    </div>
+  </div>
+</section>
+
+
+
 <section className="about" id="nosotros">
 
   <div className="block-header">
@@ -135,7 +168,7 @@ export default function App() {
           en una sola conversación.</span>
         </h3>
         <p className="ft-body">
-          Trabajo con empresas que saben que algo en su operación puede funcionar mejor, pero no saben exactamente qué ni cómo. Mi enfoque combina análisis organizacional con implementación real: no diagnósticos que quedan en un cajón, sino sistemas que tu equipo adopta y que generan resultados desde el primer mes.
+          Mi enfoque combina análisis organizacional profundo con implementación real. No entrego diagnósticos que terminan en un cajón, sino sistemas claros que tu equipo adopta, generando resultados medibles desde el primer mes de trabajo.
         </p>
         <div className="ft-tags">
           <span className="ft-tag gold">Inteligencia Artificial</span>
@@ -150,78 +183,6 @@ export default function App() {
         <blockquote>"Tu momento de transformación ya existe dentro de tu empresa. Nosotros somos la fuerza que lo activa."</blockquote>
         <cite>José Ignacio Silva, Fundador de Kayron</cite>
       </div>
-    </div>
-  </div>
-
-  <div className="block-manifesto">
-    <div className="manifesto-deco fade-up-scroll"><div className="line"></div><div className="dot"></div><div className="line"></div></div>
-    <div className="manifesto-center fade-up-scroll">
-      <p className="manifesto-eyebrow">Lo que creemos</p>
-      <p className="manifesto-text reveal-text">
-        <span>Las empresas latinoamericanas merecen acceso<br />
-        a las mismas herramientas que usan<br />
-        <strong>las grandes corporaciones del mundo.</strong><br />
-        <em>Esa brecha es nuestra razón de existir.</em></span>
-      </p>
-      <p className="manifesto-sub">Sin tecnología por moda. Sin diagnósticos guardados en carpetas. Cosas que funcionan, que tu equipo adopta, y que se miden desde el día uno.</p>
-    </div>
-    <div className="manifesto-deco"><div className="line"></div><div className="dot"></div><div className="line"></div></div>
-  </div>
-
-  <div className="block-values">
-    <div className="values-header"><span>Cómo pensamos</span></div>
-    <div className="values-grid stagger-parent">
-      <div className="value-card stagger-item">
-        <div className="value-n">01</div>
-        <div className="value-title">Criterio antes que tecnología</div>
-        <div className="value-rule"></div>
-        <p className="value-desc">Cada herramienta tiene que justificarse con un resultado concreto. Nunca implementamos por moda o por tendencia.</p>
-      </div>
-      <div className="value-card stagger-item">
-        <div className="value-n">02</div>
-        <div className="value-title">Sistemas que viven y crecen</div>
-        <div className="value-rule"></div>
-        <p className="value-desc">Lo que construimos no termina en la entrega. Es un sistema que se actualiza, se mide y evoluciona con tu empresa.</p>
-      </div>
-      <div className="value-card stagger-item">
-        <div className="value-n">03</div>
-        <div className="value-title">Resultados desde el día uno</div>
-        <div className="value-rule"></div>
-        <p className="value-desc">Si no se puede medir, no cuenta. Cada implementación arranca con métricas claras y un punto de comparación real.</p>
-      </div>
-    </div>
-  </div>
-
-</section>
-
-
-<section className="process" id="proceso">
-  <div className="process-header">
-    <h2>Cómo trabajamos</h2>
-    <p>Eliminamos la fricción. Un camino claro desde el primer contacto hasta el resultado final.</p>
-  </div>
-
-  <div className="track" id="track">
-    <div className="track-line-bg"></div>
-    <div className="track-line-gold" id="goldLine"></div>
-
-    <div className="step" id="step1">
-      <div className="step-node"></div>
-      <span className="step-index">/ 01</span>
-      <h3 className="step-title">Conversación</h3>
-      <p className="step-body">Hablamos 30 minutos, entendemos tu situación sin compromiso.</p>
-    </div>
-    <div className="step" id="step2">
-      <div className="step-node"></div>
-      <span className="step-index">/ 02</span>
-      <h3 className="step-title">Diagnóstico</h3>
-      <p className="step-body">Mapeamos tus procesos y te presentamos un plan concreto.</p>
-    </div>
-    <div className="step" id="step3">
-      <div className="step-node"></div>
-      <span className="step-index">/ 03</span>
-      <h3 className="step-title">Ejecución</h3>
-      <p className="step-body">Implementamos, medimos y ajustamos contigo.</p>
     </div>
   </div>
 </section>

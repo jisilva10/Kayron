@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const FrenaSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -33,32 +34,45 @@ const FrenaSection: React.FC = () => {
         <p>Lo identificamos. Lo resolvemos. Lo medimos.</p>
       </div>
 
-      <div className="tabs-nav stagger-parent">
+      <div className="tabs-nav stagger-parent relative mb-12 flex gap-8 border-b border-border/50 overflow-x-auto no-scrollbar">
         {tabs.map((tab, index) => (
           <button
             key={index}
-            className={`tab-btn stagger-item ${activeTab === index ? 'active' : ''}`}
+            className={`relative py-4 px-2 text-[13px] font-sans tracking-[0.18em] uppercase transition-colors whitespace-nowrap outline-none stagger-item ${
+              activeTab === index ? 'text-dark font-medium' : 'text-mid hover:text-dark'
+            }`}
             onClick={() => setActiveTab(index)}
           >
             {tab.title}
+            {activeTab === index && (
+              <motion.div
+                layoutId="frena-tab-indicator"
+                className="absolute bottom-[-1px] left-0 right-0 h-[1.5px] bg-gold"
+                transition={{ type: "spring", duration: 0.6 }}
+              />
+            )}
           </button>
         ))}
       </div>
 
-      <div className="tab-panels">
-        {tabs.map((tab, index) => (
-          <div
-            key={index}
-            className={`tab-panel ${activeTab === index ? 'active' : ''}`}
-            style={{ display: activeTab === index ? 'grid' : 'none' }}
+      <div className="tab-panels relative min-h-[280px]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="tab-panel active"
+            style={{ display: 'grid' }}
           >
-            <p className="panel-quote">{tab.quote}</p>
+            <p className="panel-quote text-[28px] font-cormorant leading-tight text-dark">{tabs[activeTab].quote}</p>
             <div className="panel-right">
-              <p className="panel-label">Nuestra respuesta</p>
-              <p className="panel-response">{tab.response}</p>
+              <p className="panel-label text-gold text-xs tracking-widest uppercase mb-4">Nuestra respuesta</p>
+              <p className="panel-response text-mid text-base leading-relaxed">{tabs[activeTab].response}</p>
             </div>
-          </div>
-        ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
