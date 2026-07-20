@@ -34,11 +34,11 @@ const FrenaSection: React.FC = () => {
         <p>Lo identificamos. Lo resolvemos. Lo medimos.</p>
       </div>
 
-      <div className="tabs-nav stagger-parent relative mb-12 flex gap-8 border-b border-border/50 overflow-x-auto no-scrollbar">
+      <div className="stagger-parent relative mb-12 flex gap-8 border-b border-border/50 overflow-x-auto no-scrollbar">
         {tabs.map((tab, index) => (
           <button
             key={index}
-            className={`relative py-4 px-2 text-[13px] font-sans tracking-[0.18em] uppercase transition-colors whitespace-nowrap outline-none stagger-item ${
+            className={`relative py-4 px-6 text-[13px] font-sans tracking-[0.18em] uppercase transition-colors whitespace-nowrap outline-none stagger-item ${
               activeTab === index ? 'text-dark font-medium' : 'text-mid hover:text-dark'
             }`}
             onClick={() => setActiveTab(index)}
