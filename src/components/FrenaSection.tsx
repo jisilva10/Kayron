@@ -35,26 +35,26 @@ const FrenaSection: React.FC = () => {
       </div>
 
       {/* Pill-style Segmented Control */}
-      <div className="stagger-parent relative mb-16 flex gap-1 p-2 rounded-full bg-white border border-border/80 shadow-sm self-start overflow-x-auto no-scrollbar w-full sm:w-max max-w-full">
+      <div className="stagger-parent relative mb-12 flex gap-2 p-2 rounded-full bg-white border border-border shadow-md self-start overflow-x-auto no-scrollbar w-full sm:w-max max-w-full items-center">
         {tabs.map((tab, index) => {
           const isActive = activeTab === index;
           return (
             <button
               key={index}
               onClick={() => setActiveTab(index)}
-              className={`relative py-3.5 px-8 text-[11px] font-sans tracking-[0.2em] uppercase transition-colors duration-300 outline-none border-none cursor-pointer rounded-full flex-shrink-0 whitespace-nowrap stagger-item ${
+              className={`relative h-12 px-6 flex items-center justify-center text-[12px] font-sans tracking-[0.15em] uppercase transition-colors duration-300 outline-none border-none cursor-pointer rounded-full flex-shrink-0 whitespace-nowrap stagger-item ${
                 isActive ? 'text-cream font-semibold' : 'text-mid hover:text-dark font-medium'
               }`}
             >
               {isActive && (
                 <motion.div
                   layoutId="activeTabIndicatorFrena"
-                  className="absolute inset-0 bg-dark rounded-full"
+                  className="absolute inset-0 h-full w-full bg-dark rounded-full shadow-md"
                   initial={false}
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
-              <span className="relative z-10">{tab.title}</span>
+              <span className="relative z-10 block">{tab.title}</span>
             </button>
           );
         })}
