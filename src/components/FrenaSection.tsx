@@ -34,44 +34,46 @@ const FrenaSection: React.FC = () => {
         <p>Lo identificamos. Lo resolvemos. Lo medimos.</p>
       </div>
 
-      <div className="stagger-parent relative mb-12 flex gap-8 border-b border-border/50 overflow-x-auto no-scrollbar">
+      {/* Pill-style Segmented Control */}
+      <div className="stagger-parent relative mb-12 flex gap-2 p-1.5 rounded-xl bg-border/50 border border-border self-start overflow-x-auto no-scrollbar w-max max-w-full">
         {tabs.map((tab, index) => (
           <button
             key={index}
-            className={`tab-btn relative px-8 py-4 text-[13px] font-sans tracking-[0.18em] uppercase transition-all whitespace-nowrap outline-none bg-transparent border-none cursor-pointer stagger-item rounded-t-xl ${
+            className={`relative py-3 px-6 text-[12px] font-sans tracking-[0.15em] uppercase transition-all whitespace-nowrap outline-none border-none cursor-pointer stagger-item rounded-lg ${
               activeTab === index 
-                ? 'text-dark font-bold bg-dark/[0.03]' 
-                : 'text-light opacity-70 hover:opacity-100 hover:text-dark hover:bg-dark/[0.01]'
+                ? 'text-dark font-semibold shadow-sm bg-white' 
+                : 'text-mid hover:text-dark bg-transparent'
             }`}
             onClick={() => setActiveTab(index)}
           >
-            {tab.title}
-            {activeTab === index && (
-              <motion.div
-                layoutId="frena-tab-indicator"
-                className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-gold"
-                transition={{ type: "spring", duration: 0.5, bounce: 0.2 }}
-              />
-            )}
+            <span className="relative z-10">{tab.title}</span>
           </button>
         ))}
       </div>
 
-      <div className="tab-panels relative min-h-[280px]">
-        <AnimatePresence mode="popLayout">
+      {/* Tab Content with Absolute Positioning to prevent layout jumps */}
+      <div className="relative w-full h-[380px] sm:h-[280px]">
+        <AnimatePresence>
           <motion.div
             key={activeTab}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15, filter: "blur(4px)" }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="tab-panel active"
-            style={{ display: 'grid' }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="absolute inset-0 w-full"
+            style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+              gap: '40px',
+              alignItems: 'start'
+            }}
           >
-            <p className="panel-quote text-[28px] font-cormorant leading-tight text-dark">{tabs[activeTab].quote}</p>
-            <div className="panel-right">
-              <p className="panel-label text-gold text-xs tracking-widest uppercase mb-4">Nuestra respuesta</p>
-              <p className="panel-response text-mid text-base leading-relaxed">{tabs[activeTab].response}</p>
+            <p className="panel-quote text-[28px] font-cormorant leading-tight text-dark m-0 border-l-[1.5px] border-gold pl-6 italic">
+              {tabs[activeTab].quote}
+            </p>
+            <div className="flex flex-col justify-start pt-2">
+              <p className="text-gold text-[9px] tracking-[0.35em] uppercase mb-4 m-0">Nuestra respuesta</p>
+              <p className="text-mid text-base leading-relaxed m-0">{tabs[activeTab].response}</p>
             </div>
           </motion.div>
         </AnimatePresence>
