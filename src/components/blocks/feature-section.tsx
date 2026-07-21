@@ -36,8 +36,9 @@ export function FeatureSteps({
       }
     }, 100)
 
-    return () => clearInterval(timer)
-  }, [progress, features.length, autoPlayInterval])  return (
+  }, [progress, features.length, autoPlayInterval])
+
+  return (
     <div className={cn("py-0 pb-20 w-full", className)}>
       <div className="w-full">
         {title && (
