@@ -21,12 +21,23 @@ export function FeatureSteps({
   features,
   className,
   title = "How to get Started",
+  autoPlayInterval = 8000,
 }: FeatureStepsProps) {
-  const [currentFeature, setCurrentFeature] = useState(0);
+  const [currentFeature, setCurrentFeature] = useState(0)
+  const [progress, setProgress] = useState(0)
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (progress < 100) {
+        setProgress((prev) => prev + 100 / (autoPlayInterval / 100))
+      } else {
+        setCurrentFeature((prev) => (prev + 1) % features.length)
+        setProgress(0)
+      }
+    }, 100)
 
-
-  return (
+    return () => clearInterval(timer)
+  }, [progress, features.length, autoPlayInterval])  return (
     <div className={cn("py-0 pb-20 w-full", className)}>
       <div className="w-full">
         {title && (
@@ -35,15 +46,16 @@ export function FeatureSteps({
           </h2>
         )}
 
-        <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-start relative">
-          <div className="order-2 md:order-1 flex flex-col justify-start ml-0 md:ml-[120px] pb-[20vh]">
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-start">
+          <div className="order-2 md:order-1 flex flex-col justify-center gap-16 ml-0 md:ml-[120px]">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                className="flex items-start gap-8 md:gap-10 cursor-pointer min-h-[60vh] py-[10vh] snap-center"
-                onViewportEnter={() => setCurrentFeature(index)}
-                viewport={{ margin: "-40% 0px -40% 0px", amount: 0.1 }}
-                onClick={() => setCurrentFeature(index)}
+                className="flex items-start gap-8 md:gap-10 cursor-pointer snap-center"
+                onClick={() => {
+                  setCurrentFeature(index);
+                  setProgress(0);
+                }}
                 initial={{ opacity: 0.4 }}
                 animate={{ opacity: index === currentFeature ? 1 : 0.4 }}
                 transition={{ duration: 0.5 }}
@@ -77,7 +89,7 @@ export function FeatureSteps({
 
           <div
             className={cn(
-              "order-1 md:order-2 sticky top-[15vh] md:top-32 h-[300px] md:h-[500px] w-full overflow-hidden rounded-2xl shadow-sm border border-border"
+              "order-1 md:order-2 relative h-[300px] md:h-[500px] w-full overflow-hidden rounded-2xl shadow-sm border border-border"
             )}
           >
             <AnimatePresence mode="wait">
