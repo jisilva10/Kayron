@@ -389,7 +389,7 @@ canvas {
 .about {
   border-top: 1px solid var(--border);
   max-width: 100%;
-  padding: 0 56px;
+  padding: 0 56px 120px 56px;
 }
 
 .block-header {
@@ -1007,7 +1007,8 @@ footer p {
   .tab-btn { padding: 16px 24px; flex-shrink: 0; font-size: 11px; }
   .tab-panel { grid-template-columns: 1fr; gap: 40px; }
   
-  .about, .services { padding: 0 24px; }
+  .about { padding: 0 24px; }
+  .services { padding: 0 24px 80px 24px; }
   .block-header { grid-template-columns: 1fr; padding: 64px 0 32px; }
   .section-index { display: none; }
   .header-content { grid-template-columns: 1fr; gap: 40px; }
@@ -1050,3 +1051,6 @@ footer p {
   padding: 0 56px;
 }
 
+
+.contact-chip { display: flex; align-items: center; gap: 10px; padding: 12px 28px; border: 1.5px solid var(--gold); border-radius: 100px; color: var(--dark); text-decoration: none; font-family: 'DM Sans', sans-serif; font-size: 16px; transition: all 0.3s ease; }
+.contact-chip:hover { background: var(--gold); color: var(--cream); }

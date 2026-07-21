@@ -1,7 +1,7 @@
 import FrenaSection from "./components/FrenaSection";
 import { useLegacyAnimations } from "@/hooks/useLegacyAnimations";
 import { FeatureSteps } from './components/blocks/feature-section';
-import { IconBrandInstagram, IconBrandWhatsapp } from '@tabler/icons-react';
+import { IconBrandInstagram, IconBrandWhatsapp, IconMail } from '@tabler/icons-react';
 
 const demoFeatures = [
   { 
@@ -228,7 +228,7 @@ export default function App() {
   <h2 className="reveal-text">
     <span>Tu momento<br />
     KAYR
-    <svg width="1.375em" height="1em" viewBox="0 0 22 16" fill="none" style={{ display: 'inline-block', margin: '0 0.1em', transform: 'translateY(0.1em)' }}>
+    <svg width="0.85em" height="0.6em" viewBox="0 0 22 16" fill="none" style={{ display: 'inline-block', margin: '0 0.05em', transform: 'translateY(-0.02em)' }}>
       <rect x="5" y="2" width="12" height="12" rx="1.5" stroke="#B89A0A" strokeWidth="1.2" fill="none"/>
       <line x1="5" y1="5.5" x2="2" y2="5.5" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
       <line x1="5" y1="10.5" x2="2" y2="10.5" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
@@ -245,25 +245,26 @@ export default function App() {
     ON<br />
     es <em>ahora.</em></span>
   </h2>
-  <p>30 minutos. Sin compromiso. Con claridad sobre qué está frenando tu empresa y cómo resolverlo.</p>
-  <a className="btn-primary" href="mailto:hola@kayron.consulting">Agenda una llamada →</a>
+  <p style={{ marginBottom: '32px' }}>Sin compromiso. Con claridad sobre qué está frenando tu empresa y cómo resolverlo.</p>
+  <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+    <a href="https://wa.me/593986145983" target="_blank" rel="noreferrer" className="contact-chip">
+      <IconBrandWhatsapp size={20} stroke={1.5} />
+      <span>WhatsApp</span>
+    </a>
+    <a href="mailto:jisignacio10@gmail.com" className="contact-chip">
+      <IconMail size={20} stroke={1.5} />
+      <span>Email</span>
+    </a>
+    <a href="https://www.instagram.com/kayron.ce/" target="_blank" rel="noreferrer" className="contact-chip">
+      <IconBrandInstagram size={20} stroke={1.5} />
+      <span>Instagram</span>
+    </a>
+  </div>
 </section>
 
 <footer>
   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px', width: '100%' }}>
     <p>© 2025 Kayron Consulting &amp; Engineering</p>
-    
-    <div style={{ display: 'flex', gap: '32px' }}>
-      <a href="https://www.instagram.com/kayron.ce/" target="_blank" rel="noreferrer" style={{ color: 'var(--dark)', display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
-        <IconBrandInstagram size={24} stroke={1.5} />
-        <span style={{ fontSize: '14px', fontFamily: 'DM Sans' }}>Instagram</span>
-      </a>
-      <a href="https://wa.me/593986145983" target="_blank" rel="noreferrer" style={{ color: 'var(--dark)', display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
-        <IconBrandWhatsapp size={24} stroke={1.5} />
-        <span style={{ fontSize: '14px', fontFamily: 'DM Sans' }}>WhatsApp</span>
-      </a>
-    </div>
-
     <p>Ecuador</p>
   </div>
 </footer>
