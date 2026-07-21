@@ -58,8 +58,8 @@ export function FeatureSteps({
                   setCurrentFeature(index);
                   setProgress(0);
                 }}
-                initial={{ opacity: 0.6 }}
-                animate={{ opacity: index === currentFeature ? 1 : 0.6 }}
+                initial={{ opacity: 0.4 }}
+                animate={{ opacity: index === currentFeature ? 1 : 0.4 }}
                 transition={{ duration: 0.5 }}
               >
                 <motion.div
@@ -78,10 +78,10 @@ export function FeatureSteps({
                 </motion.div>
 
                 <div className="flex-1 mt-1">
-                  <h3 className="text-2xl md:text-3xl font-semibold font-cormorant text-dark">
+                  <h3 className="text-xl md:text-2xl font-semibold font-cormorant text-dark">
                     {feature.title || feature.step}
                   </h3>
-                  <p className="text-base md:text-lg text-mid font-sans mt-4 leading-relaxed">
+                  <p className="text-sm md:text-base text-dark font-sans mt-3 leading-relaxed">
                     {feature.content}
                   </p>
                 </div>
