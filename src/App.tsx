@@ -1,5 +1,27 @@
 import FrenaSection from "./components/FrenaSection";
 import { useLegacyAnimations } from "@/hooks/useLegacyAnimations";
+import { FeatureSteps } from './components/blocks/feature-section';
+
+const demoFeatures = [
+  { 
+    step: 'Step 1', 
+    title: 'Learn the Basics',
+    content: 'Start your Web3 journey by learning the basics of blockchain.', 
+    image: 'https://images.unsplash.com/photo-1723958929247-ef054b525153?q=80&w=2070&auto=format&fit=crop' 
+  },
+  { 
+    step: 'Step 2',
+    title: 'Deep Dive',
+    content: 'Dive deep into blockchain fundamentals and smart contract development.',
+    image: 'https://images.unsplash.com/photo-1723931464622-b7df7c71e380?q=80&w=2070&auto=format&fit=crop'
+  },
+  { 
+    step: 'Step 3',
+    title: 'Build Projects',
+    content: 'Graduate with hands-on Web3 experience through building decentralized applications.',
+    image: 'https://images.unsplash.com/photo-1725961476494-efa87ae3106a?q=80&w=2070&auto=format&fit=crop'
+  },
+];
 
 export default function App() {
   useLegacyAnimations();
@@ -122,10 +144,26 @@ export default function App() {
   </div>
 </section>
 
+<section className="services" id="servicios-steps">
+  <div className="block-header" style={{ paddingBottom: '0' }}>
+    <div className="section-index parallax" data-speed="0.15">02</div>
+    <div className="header-content fade-up-scroll">
+      <div>
+        <div className="header-label">Nuestros Servicios</div>
+      </div>
+    </div>
+  </div>
+  <FeatureSteps 
+    features={demoFeatures}
+    title=""
+    autoPlayInterval={4000}
+  />
+</section>
+
 <section className="about" id="nosotros">
 
   <div className="block-header">
-    <div className="section-index parallax" data-speed="0.15">02</div>
+    <div className="section-index parallax" data-speed="0.15">03</div>
     <div className="header-content fade-up-scroll">
       <div>
         <div className="header-label">El Origen</div>
