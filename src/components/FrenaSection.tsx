@@ -28,7 +28,7 @@ const FrenaSection: React.FC = () => {
   ];
 
   return (
-    <section className="frena" id="servicios">
+    <section className="frena" id="diagnostico">
       <div className="frena-header fade-up-scroll">
         <h2 className="reveal-text"><span>Lo que frena a tu empresa.</span></h2>
         <p>Lo identificamos. Lo resolvemos. Lo medimos.</p>
