@@ -55,8 +55,8 @@ export default function App() {
     <span></span><span></span>
   </div>
   <div className="nav-links" id="navLinks">
-    <a href="#nosotros">Quiénes somos</a>
     <a href="#servicios">Servicios</a>
+    <a href="#nosotros">Quiénes somos</a>
     <a href="#contacto" className="cta">Contacto</a>
   </div>
 </nav>
