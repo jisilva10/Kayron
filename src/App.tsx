@@ -100,9 +100,20 @@ export default function App() {
         Optimizamos tus procesos con inteligencia artificial y automatización. Resultados reales, sistemas que funcionan, equipos que los adoptan.
       </p>
     </div>
-    <a className="hero-cta" href="#contacto">
-      Agenda una llamada <span className="arrow">→</span>
-    </a>
+    <div style={{ display: 'flex', gap: '16px', justifyContent: 'flex-start', flexWrap: 'wrap', marginTop: '24px' }}>
+      <a href="https://wa.me/593986145983" target="_blank" rel="noreferrer" className="contact-chip">
+        <IconBrandWhatsapp size={20} stroke={1.5} />
+        <span>WhatsApp</span>
+      </a>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jisignacio10@gmail.com" target="_blank" rel="noreferrer" className="contact-chip">
+        <IconMail size={20} stroke={1.5} />
+        <span>Email</span>
+      </a>
+      <a href="https://www.instagram.com/kayron.ce/" target="_blank" rel="noreferrer" className="contact-chip">
+        <IconBrandInstagram size={20} stroke={1.5} />
+        <span>Instagram</span>
+      </a>
+    </div>
     <div className="grid-wrap">
       <canvas id="gridCanvas" />
     </div>
@@ -228,7 +239,7 @@ export default function App() {
   <h2 className="reveal-text">
     <span>Tu momento<br />
     KAYR
-    <svg width="0.85em" height="0.6em" viewBox="0 0 22 16" fill="none" style={{ display: 'inline-block', margin: '0 0.05em', transform: 'translateY(-0.02em)' }}>
+    <svg width="0.85em" height="0.6em" viewBox="0 0 22 16" fill="none" style={{ display: 'inline-block', margin: '0 0.05em', transform: 'translateY(-0.15em)' }}>
       <rect x="5" y="2" width="12" height="12" rx="1.5" stroke="#B89A0A" strokeWidth="1.2" fill="none"/>
       <line x1="5" y1="5.5" x2="2" y2="5.5" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
       <line x1="5" y1="10.5" x2="2" y2="10.5" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
@@ -251,7 +262,7 @@ export default function App() {
       <IconBrandWhatsapp size={20} stroke={1.5} />
       <span>WhatsApp</span>
     </a>
-    <a href="mailto:jisignacio10@gmail.com" className="contact-chip">
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jisignacio10@gmail.com" target="_blank" rel="noreferrer" className="contact-chip">
       <IconMail size={20} stroke={1.5} />
       <span>Email</span>
     </a>
