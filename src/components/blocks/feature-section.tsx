@@ -48,7 +48,7 @@ export function FeatureSteps({
           </h2>
         )}
 
-        <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-start">
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center">
           <div className="order-2 md:order-1 flex flex-col justify-center gap-16 ml-0 md:ml-[120px]">
             {features.map((feature, index) => (
               <motion.div

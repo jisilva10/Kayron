@@ -1,6 +1,7 @@
 import FrenaSection from "./components/FrenaSection";
 import { useLegacyAnimations } from "@/hooks/useLegacyAnimations";
 import { FeatureSteps } from './components/blocks/feature-section';
+import { IconBrandInstagram, IconBrandWhatsapp } from '@tabler/icons-react';
 
 const demoFeatures = [
   { 
@@ -144,7 +145,7 @@ export default function App() {
   </div>
 </section>
 
-<section className="services" id="servicios-steps" style={{ padding: '0 56px', borderTop: '1px solid var(--border)' }}>
+<section className="services" id="servicios-steps">
   <div className="block-header" style={{ paddingBottom: '40px' }}>
     <div className="section-index parallax" data-speed="0.15">02</div>
     <div className="header-content fade-up-scroll">
@@ -224,14 +225,47 @@ export default function App() {
 
 
 <section className="footer-cta fade-up-scroll" id="contacto">
-  <h2 className="reveal-text"><span>Tu momento<br />es <em>ahora.</em></span></h2>
+  <h2 className="reveal-text">
+    <span>Tu momento<br />
+    KAYR
+    <svg width="1.375em" height="1em" viewBox="0 0 22 16" fill="none" style={{ display: 'inline-block', margin: '0 0.1em', transform: 'translateY(0.1em)' }}>
+      <rect x="5" y="2" width="12" height="12" rx="1.5" stroke="#B89A0A" strokeWidth="1.2" fill="none"/>
+      <line x1="5" y1="5.5" x2="2" y2="5.5" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="5" y1="10.5" x2="2" y2="10.5" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="17" y1="5.5" x2="20" y2="5.5" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="17" y1="10.5" x2="20" y2="10.5" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="8" y1="2" x2="8" y2="0" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="11" y1="2" x2="11" y2="0" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="14" y1="2" x2="14" y2="0" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="8" y1="14" x2="8" y2="16" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="11" y1="14" x2="11" y2="16" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="14" y1="14" x2="14" y2="16" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
+      <circle cx="11" cy="8" r="2" fill="#B89A0A"/>
+    </svg>
+    ON<br />
+    es <em>ahora.</em></span>
+  </h2>
   <p>30 minutos. Sin compromiso. Con claridad sobre qué está frenando tu empresa y cómo resolverlo.</p>
   <a className="btn-primary" href="mailto:hola@kayron.consulting">Agenda una llamada →</a>
 </section>
 
 <footer>
-  <p>© 2025 Kayron Consulting &amp; Engineering</p>
-  <p>Ecuador</p>
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px', width: '100%' }}>
+    <p>© 2025 Kayron Consulting &amp; Engineering</p>
+    
+    <div style={{ display: 'flex', gap: '32px' }}>
+      <a href="https://www.instagram.com/kayron.ce/" target="_blank" rel="noreferrer" style={{ color: 'var(--dark)', display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
+        <IconBrandInstagram size={24} stroke={1.5} />
+        <span style={{ fontSize: '14px', fontFamily: 'DM Sans' }}>Instagram</span>
+      </a>
+      <a href="https://wa.me/593986145983" target="_blank" rel="noreferrer" style={{ color: 'var(--dark)', display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
+        <IconBrandWhatsapp size={24} stroke={1.5} />
+        <span style={{ fontSize: '14px', fontFamily: 'DM Sans' }}>WhatsApp</span>
+      </a>
+    </div>
+
+    <p>Ecuador</p>
+  </div>
 </footer>
 
 

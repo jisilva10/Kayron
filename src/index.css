@@ -1007,7 +1007,7 @@ footer p {
   .tab-btn { padding: 16px 24px; flex-shrink: 0; font-size: 11px; }
   .tab-panel { grid-template-columns: 1fr; gap: 40px; }
   
-  .about { padding: 0 24px; }
+  .about, .services { padding: 0 24px; }
   .block-header { grid-template-columns: 1fr; padding: 64px 0 32px; }
   .section-index { display: none; }
   .header-content { grid-template-columns: 1fr; gap: 40px; }
@@ -1042,4 +1042,11 @@ footer p {
   footer { padding: 32px 24px; flex-direction: column; gap: 16px; text-align: center; }
 }
 
+
+
+.services {
+  border-top: 1px solid var(--border);
+  max-width: 100%;
+  padding: 0 56px;
+}
 
