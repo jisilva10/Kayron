@@ -36,6 +36,7 @@ export function FeatureSteps({
       }
     }, 100)
 
+    return () => clearInterval(timer);
   }, [progress, features.length, autoPlayInterval])
 
   return (
