@@ -4,22 +4,22 @@ import { FeatureSteps } from './components/blocks/feature-section';
 
 const demoFeatures = [
   { 
-    step: 'Step 1', 
-    title: 'Learn the Basics',
-    content: 'Start your Web3 journey by learning the basics of blockchain.', 
-    image: 'https://images.unsplash.com/photo-1723958929247-ef054b525153?q=80&w=2070&auto=format&fit=crop' 
+    step: '01', 
+    title: 'Automatización Operativa',
+    content: 'Sistemas inteligentes para el control de inventarios y gestión de pagos automatizada. Garantizamos que tu operación diaria fluya sin interrupciones.', 
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop' 
   },
   { 
-    step: 'Step 2',
-    title: 'Deep Dive',
-    content: 'Dive deep into blockchain fundamentals and smart contract development.',
-    image: 'https://images.unsplash.com/photo-1723931464622-b7df7c71e380?q=80&w=2070&auto=format&fit=crop'
+    step: '02',
+    title: 'Ecosistemas de IA y Software Especializado',
+    content: 'Creamos software especializado y tableros de control con Inteligencia Artificial que te dan visión absoluta sobre el rendimiento de tu negocio.',
+    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2070&auto=format&fit=crop'
   },
   { 
-    step: 'Step 3',
-    title: 'Build Projects',
-    content: 'Graduate with hands-on Web3 experience through building decentralized applications.',
-    image: 'https://images.unsplash.com/photo-1725961476494-efa87ae3106a?q=80&w=2070&auto=format&fit=crop'
+    step: '03',
+    title: 'Consultoría y Optimización a Medida',
+    content: 'Cada empresa tiene fugas de tiempo y dinero distintas. Diagnosticamos tus procesos, detectamos las tareas repetitivas y construimos la herramienta exacta para erradicar el problema.',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop'
   },
 ];
 
