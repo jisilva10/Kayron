@@ -34,12 +34,21 @@ html, body {
   overflow-x: hidden;
   width: 100%;
 }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
 
 body {
   background: var(--cream);
   font-family: 'DM Sans', sans-serif;
   color: var(--dark);
+}
+
+/* Snap sections into place */
+header, section, footer {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 /* ════════════════════════════════════════
