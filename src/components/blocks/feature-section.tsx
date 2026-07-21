@@ -91,7 +91,7 @@ export function FeatureSteps({
 
           <div
             className={cn(
-              "order-1 md:order-2 relative h-[300px] md:h-[500px] w-full overflow-hidden rounded-2xl shadow-sm border border-border"
+              "order-1 md:order-2 relative h-[300px] md:h-[420px] w-full overflow-hidden rounded-2xl shadow-sm border border-border"
             )}
           >
             <AnimatePresence mode="wait">
