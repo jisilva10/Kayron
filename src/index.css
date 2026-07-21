@@ -49,6 +49,7 @@ body {
 header, section, footer {
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  scroll-margin-top: 96px;
 }
 
 /* ════════════════════════════════════════
