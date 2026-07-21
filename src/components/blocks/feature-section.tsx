@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState, useEffect, useRef } from "react"
+import { motion, AnimatePresence, useInView } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 interface Feature {
@@ -25,8 +25,21 @@ export function FeatureSteps({
 }: FeatureStepsProps) {
   const [currentFeature, setCurrentFeature] = useState(0)
   const [progress, setProgress] = useState(0)
+  
+  const containerRef = useRef<HTMLDivElement>(null)
+  const isInView = useInView(containerRef, { amount: 0.3 })
+
+  // Reset to first item whenever the section comes into view
+  useEffect(() => {
+    if (isInView) {
+      setCurrentFeature(0)
+      setProgress(0)
+    }
+  }, [isInView])
 
   useEffect(() => {
+    if (!isInView) return; // Pause animation if not in view
+
     const timer = setInterval(() => {
       if (progress < 100) {
         setProgress((prev) => prev + 100 / (autoPlayInterval / 100))
@@ -37,10 +50,10 @@ export function FeatureSteps({
     }, 100)
 
     return () => clearInterval(timer);
-  }, [progress, features.length, autoPlayInterval])
+  }, [progress, features.length, autoPlayInterval, isInView])
 
   return (
-    <div className={cn("py-0 pb-20 w-full", className)}>
+    <div ref={containerRef} className={cn("py-0 pb-20 w-full", className)}>
       <div className="w-full">
         {title && (
           <h2 className="text-3xl md:text-5xl font-cormorant font-semibold mb-12 text-center text-dark">
