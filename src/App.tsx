@@ -156,7 +156,7 @@ export default function App() {
   </div>
 </section>
 
-<section className="services" id="servicios-steps">
+<section className="services" id="servicios">
   <div className="block-header" style={{ paddingBottom: '40px' }}>
     <div className="section-index parallax" data-speed="0.15">02</div>
     <div className="header-content fade-up-scroll">
