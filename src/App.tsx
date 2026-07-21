@@ -100,7 +100,7 @@ export default function App() {
         Optimizamos tus procesos con inteligencia artificial y automatización. Resultados reales, sistemas que funcionan, equipos que los adoptan.
       </p>
     </div>
-    <div style={{ display: 'flex', gap: '16px', justifyContent: 'flex-start', flexWrap: 'wrap', marginTop: '24px' }}>
+    <div className="hero-chips-wrap">
       <a href="https://wa.me/593986145983" target="_blank" rel="noreferrer" className="contact-chip">
         <IconBrandWhatsapp size={20} stroke={1.5} />
         <span>WhatsApp</span>
@@ -109,7 +109,7 @@ export default function App() {
         <IconMail size={20} stroke={1.5} />
         <span>Email</span>
       </a>
-      <a href="https://www.instagram.com/kayron.ce/" target="_blank" rel="noreferrer" className="contact-chip">
+      <a href="https://www.instagram.com/kayron.consulting/" target="_blank" rel="noreferrer" className="contact-chip">
         <IconBrandInstagram size={20} stroke={1.5} />
         <span>Instagram</span>
       </a>
@@ -266,7 +266,7 @@ export default function App() {
       <IconMail size={20} stroke={1.5} />
       <span>Email</span>
     </a>
-    <a href="https://www.instagram.com/kayron.ce/" target="_blank" rel="noreferrer" className="contact-chip">
+    <a href="https://www.instagram.com/kayron.consulting/" target="_blank" rel="noreferrer" className="contact-chip">
       <IconBrandInstagram size={20} stroke={1.5} />
       <span>Instagram</span>
     </a>
