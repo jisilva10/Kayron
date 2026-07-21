@@ -144,19 +144,19 @@ export default function App() {
   </div>
 </section>
 
-<section className="services" id="servicios-steps">
+<section className="services" id="servicios-steps" style={{ padding: '0 56px' }}>
   <div className="block-header" style={{ paddingBottom: '0' }}>
     <div className="section-index parallax" data-speed="0.15">02</div>
     <div className="header-content fade-up-scroll">
       <div>
-        <div className="header-label">Nuestros Servicios</div>
+        <div className="header-label" style={{ fontSize: '12px', letterSpacing: '0.3em', marginBottom: '20px' }}>NUESTROS SERVICIOS</div>
       </div>
     </div>
   </div>
   <FeatureSteps 
     features={demoFeatures}
     title=""
-    autoPlayInterval={4000}
+    autoPlayInterval={8000}
   />
 </section>
 

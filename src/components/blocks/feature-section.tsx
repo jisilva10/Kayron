@@ -40,8 +40,8 @@ export function FeatureSteps({
   }, [progress, features.length, autoPlayInterval])
 
   return (
-    <div className={cn("py-12 md:py-20 w-full", className)}>
-      <div className="max-w-[1200px] mx-auto w-full px-6 md:px-12">
+    <div className={cn("py-0 pb-20 w-full", className)}>
+      <div className="w-full">
         {title && (
           <h2 className="text-3xl md:text-5xl font-cormorant font-semibold mb-12 text-center text-dark">
             {title}
@@ -49,7 +49,7 @@ export function FeatureSteps({
         )}
 
         <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16">
-          <div className="order-2 md:order-1 space-y-8 flex flex-col justify-center">
+          <div className="order-2 md:order-1 space-y-16 flex flex-col justify-center ml-0 md:ml-[120px]">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
