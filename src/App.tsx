@@ -275,7 +275,7 @@ export default function App() {
 
 <footer>
   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px', width: '100%' }}>
-    <p>© 2025 Kayron Consulting &amp; Engineering</p>
+    <p>© 2026 Kayron Consulting &amp; Engineering</p>
     <p>Ecuador</p>
   </div>
 </footer>
