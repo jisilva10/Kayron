@@ -198,7 +198,7 @@ export default function App() {
   <div className="block-founder">
     <div className="founder-photo-col creative-reveal">
       <div className="founder-photo-frame">
-        <img src="founder.jpg" alt="José Ignacio Silva" />
+        <img src="founder.png" alt="José Ignacio Silva" />
         <div className="photo-name-tag">
           <h3>José Ignacio Silva</h3>
           <p>Fundador &amp; Consultor Principal</p>
