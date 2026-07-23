@@ -923,40 +923,32 @@ footer p {
 @keyframes rShow   { to { opacity: 1; } }
 @keyframes rDraw   { from { width: 0; } to { width: 48px; } }
 @keyframes rSettle { from { margin-bottom: 0; } to { margin-bottom: 12px; } }
-@keyframes chipTumble {
-  0% { 
-    opacity: 0; 
-    transform: translate(-3.8em, -3.5em) rotate(-360deg); 
-    animation-timing-function: cubic-bezier(0.32, 0, 0.67, 0); 
+@keyframes chipPlugIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(-2.5em);
   }
-  20% { 
-    opacity: 1; 
-    transform: translate(-2.6em, -0.7em) rotate(-280deg); 
-    animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1); 
+  40% {
+    opacity: 1;
+    transform: scale(1.1) translateY(0);
   }
-  40% { 
-    transform: translate(-1.8em, -2.0em) rotate(-200deg); 
-    animation-timing-function: cubic-bezier(0.32, 0, 0.67, 0); 
+  60% {
+    transform: scale(0.95) translateY(0);
   }
-  60% { 
-    transform: translate(-1.0em, -0.7em) rotate(-120deg); 
-    animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1); 
+  80% {
+    transform: scale(1.02) translateY(0);
   }
-  80% { 
-    transform: translate(-0.4em, -1.2em) rotate(-50deg); 
-    animation-timing-function: cubic-bezier(0.32, 0, 0.67, 0); 
-  }
-  100% { 
-    opacity: 1; 
-    transform: translate(0, 0) rotate(0deg); 
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }
 
 .chip-bounce {
   display: inline-block;
   opacity: 0;
-  animation: chipTumble 2.5s forwards;
-  animation-delay: 0.2s;
+  animation: chipPlugIn 1.2s ease-out forwards;
+  animation-delay: 0.3s;
 }
 
 /* ════════════════════════════════════════

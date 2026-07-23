@@ -49,7 +49,7 @@ export default function App() {
       <line x1="14" y1="14" x2="14" y2="16" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
       <circle cx="11" cy="8" r="2" fill="#B89A0A"/>
     </svg>
-    ON
+    N
   </a>
   <div className="menu-toggle" id="menuToggle">
     <span></span><span></span>
@@ -81,7 +81,7 @@ export default function App() {
         <line x1="14" y1="14" x2="14" y2="16" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
         <circle cx="11" cy="8" r="2" fill="#B89A0A"/>
       </svg>
-      ON
+      N
     </div>
     <div className="hero-rule"></div>
     <div className="hero-sub">Consulting &amp; Engineering</div>
@@ -253,7 +253,7 @@ export default function App() {
       <line x1="14" y1="14" x2="14" y2="16" stroke="#B89A0A" strokeWidth="1" strokeLinecap="round"/>
       <circle cx="11" cy="8" r="2" fill="#B89A0A"/>
     </svg>
-    ON<br />
+    N<br />
     es <em>ahora.</em></span>
   </h2>
   <p style={{ marginBottom: '32px' }}>Sin compromiso. Con claridad sobre qué está frenando tu empresa y cómo resolverlo.</p>
